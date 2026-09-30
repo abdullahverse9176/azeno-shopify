@@ -1,0 +1,102 @@
+<div class="content-search-toggle">
+	<div class="close-search-toggle" data-close-search-toggle></div>
+	<div class="contents-search">
+		<div class="contents-search-top">
+			<div class="close-search" data-close-search-toggle></div>
+			<details-modal class="header__search">
+				<div class="search-modal">
+					<div class="search-modal__content" tabindex="-1">
+						<predictive-search class="search-modals__form">
+							<form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+								<div class="content-input">
+									<div class="field">
+										<input type="hidden" name="type" value="product" />
+										<input type="hidden" name="options[prefix]" value="last" />
+										<input class="search__input field__input" name="q" value="" placeholder="{{ 'general.search.submit' | t }}..." aria-haspopup="listbox" aria-autocomplete="list" autocomplete="off" autocapitalize="off" spellcheck="false">
+										<i class="icon-search"></i>
+									</div>
+								</div>
+								<div class="predictive-search-content" style="display:none">
+									<div class="predictive-search-content-product{% unless settings.show_search_blog %} full{% endunless %}" tabindex="-1" data-predictive-search>
+										<div class="predictive-search__loading-state"></div>
+									</div>
+									{%- if settings.show_search_blog -%}
+										<div class="predictive-search-content-blog" tabindex="-1" data-predictive-search-article>
+											<div class="predictive-search__loading-state"></div>
+										</div>	
+									{%- endif -%}									
+								</div>					
+								<span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+							</form>
+						</predictive-search>
+					</div>
+				</div>
+			</details-modal>
+		</div>
+	</div>
+</div>
+
+<script>
+(function () {
+
+  function focusSearchInput() {
+    const input = document.querySelector(
+      '.content-search-toggle .search__input'
+    );
+
+    if (!input) return;
+
+    const rect = input.getBoundingClientRect();
+    const style = window.getComputedStyle(input);
+
+    // Check that input is actually visible
+    if (
+      style.display === 'none' ||
+      style.visibility === 'hidden' ||
+      rect.width === 0 ||
+      rect.height === 0
+    ) {
+      return;
+    }
+
+    input.focus({ preventScroll: true });
+
+    // Extra fallback for mobile
+    setTimeout(function () {
+      if (document.activeElement !== input) {
+        input.focus({ preventScroll: true });
+      }
+    }, 50);
+  }
+
+
+  function searchOpened() {
+
+    // Try immediately
+    focusSearchInput();
+
+    // Shopify opens the search after the click
+    setTimeout(focusSearchInput, 50);
+    setTimeout(focusSearchInput, 100);
+    setTimeout(focusSearchInput, 200);
+    setTimeout(focusSearchInput, 400);
+    setTimeout(focusSearchInput, 700);
+  }
+
+
+  // Detect the search button
+  document.addEventListener('click', function (event) {
+
+    const searchButton = event.target.closest(
+      '.icon-search, .header__icon--search, [data-action="toggle-search"], .search-modal__toggle'
+    );
+
+    if (!searchButton) return;
+
+    searchOpened();
+
+  }, true);
+
+
+})();
+</script>

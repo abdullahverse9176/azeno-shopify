@@ -1,0 +1,134 @@
+
+<div class="category-container">
+
+  <div class="contegory-sec-item">
+    <div class="contegory-sec-item-img">
+      <a href="{{ section.settings.category_url_1 }}">
+        <img src="{{ section.settings.image_1 | img_url: 'master' }}" alt="{{ section.settings.category_title_1 }}">
+      </a>
+      
+    </div>
+    <div class="contegory-sec-item-content">
+      <div class="contegory-sec-heading">
+        <h6>{{ section.settings.category_title_1 }}</h6>
+        <p>{{ section.settings.category_subtitle_1 }}</p>
+      </div>
+      <a href="{{ section.settings.category_url_1 }}">
+        <span class="fa fa-angle-right"></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="contegory-sec-item">
+    <div class="contegory-sec-item-img">
+      <a href="{{ section.settings.category_url_2 }}">
+          <img src="{{ section.settings.image_2 | img_url: 'master' }}" alt="{{ section.settings.category_title_2 }}">
+      </a>
+      
+    </div>
+    <div class="contegory-sec-item-content">
+      <div class="contegory-sec-heading">
+        <h6>{{ section.settings.category_title_2 }}</h6>
+        <p>{{ section.settings.category_subtitle_2 }}</p>
+      </div>
+      <a href="{{ section.settings.category_url_2 }}">
+        <span class="fa fa-angle-right"></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="contegory-sec-item">
+    <div class="contegory-sec-item-img">
+      <a href="{{ section.settings.category_url_3 }}">
+        <img src="{{ section.settings.image_3 | img_url: 'master' }}" alt="{{ section.settings.category_title_3 }}">
+      </a>
+      
+    </div>
+    <div class="contegory-sec-item-content">
+      <div class="contegory-sec-heading">
+        <h6>{{ section.settings.category_title_3 }}</h6>
+        <p>{{ section.settings.category_subtitle_3 }}</p>
+      </div>
+      <a href="{{ section.settings.category_url_3 }}">
+        <span class="fa fa-angle-right"></span>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+
+{% schema %}
+{
+  "name": "Category Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Choose Image"
+    },
+    {
+      "type": "text",
+      "id": "category_title_1",
+      "label": "Category Title"
+    },
+    {
+      "type": "text",
+      "id": "category_subtitle_1",
+      "label": "Category Subtitle"
+    },
+    {
+      "type": "url",
+      "id": "category_url_1",
+      "label": "Category URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Choose Image"
+    },
+    {
+      "type": "text",
+      "id": "category_title_2",
+      "label": "Category Title"
+    },
+    {
+      "type": "text",
+      "id": "category_subtitle_2",
+      "label": "Category Subtitle"
+    },
+    {
+      "type": "url",
+      "id": "category_url_2",
+      "label": "Category URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Choose Image"
+    },
+    {
+      "type": "text",
+      "id": "category_title_3",
+      "label": "Category Title"
+    },
+    {
+      "type": "text",
+      "id": "category_subtitle_3",
+      "label": "Category Subtitle"
+    },
+    {
+      "type": "url",
+      "id": "category_url_3",
+      "label": "Category URL"
+    }
+    
+  ],
+  "presets": [
+    {
+      "name": "Category Section"
+    }
+  ]
+}
+{% endschema %}
+

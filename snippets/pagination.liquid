@@ -1,0 +1,68 @@
+{% comment %} {%- if settings.select_pagination == 'pagination' -%}						
+	{% capture previous_label %}
+	  <span class="pagination__navigation">
+		<i class="feather-chevron-left"></i>
+		<span class="sr-only">{{ 'general.pagination.previous' | t }}</span>
+	  </span>
+	{% endcapture %}
+	{% capture next_label %}
+	  <span class="pagination__navigation">
+		<i class="feather-chevron-right"></i>
+		<span class="sr-only">{{ 'general.pagination.next' | t }}</span>
+	  </span>
+	{% endcapture %}
+	<div class="pagination">
+	  {{ paginate | default_pagination: previous: previous_label, next: next_label }}
+	</div>
+{%- elsif settings.select_pagination == 'loadmore' -%}
+	<a href="{{ paginate.next.url }}" title="">{{ 'collections.general.load_more' | t }}
+		<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+	</a>
+{%- elsif settings.select_pagination == 'infinity' -%}
+	<a href="{{ paginate.next.url }}" title="">
+		<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+	</a>
+{%- endif -%} {% endcomment %}
+
+<!-- ibr code -->
+{%- if settings.select_pagination == 'pagination' -%}						
+	{% capture previous_label %}
+	  <span class="pagination__navigation">
+		<i class="feather-chevron-left"></i>
+		<span class="sr-only">{{ 'general.pagination.previous' | t }}</span>
+	  </span>
+	{% endcapture %}
+	{% capture next_label %}
+	  <span class="pagination__navigation">
+		<i class="feather-chevron-right"></i>
+		<span class="sr-only">{{ 'general.pagination.next' | t }}</span>
+	  </span>
+	{% endcapture %}
+
+	{%- if paginate.pages > 1 -%}
+	  <div class="pagination">
+		{{ paginate | default_pagination: previous: previous_label, next: next_label }}
+	  </div>
+
+	  {%- if paginate.previous -%}
+		<link rel="prev" href="{{ paginate.previous.url }}">
+	  {%- endif -%}
+	  {%- if paginate.next -%}
+		<link rel="next" href="{{ paginate.next.url }}">
+	  {%- endif -%}
+	{%- endif -%}
+
+{%- elsif settings.select_pagination == 'loadmore' -%}
+	{%- if paginate.next -%}
+		<a href="{{ paginate.next.url }}" title="">{{ 'collections.general.load_more' | t }}
+			<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+		</a>
+	{%- endif -%}
+
+{%- elsif settings.select_pagination == 'infinity' -%}
+	{%- if paginate.next -%}
+		<a href="{{ paginate.next.url }}" title="">
+			<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+		</a>
+	{%- endif -%}
+{%- endif -%}

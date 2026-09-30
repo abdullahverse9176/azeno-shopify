@@ -1,0 +1,413 @@
+{%- assign page_item = section.settings.page_item | plus: 0 -%}
+{%- assign select_columns = settings.select_columns -%}
+{%- assign show_count = section.settings.show_count -%}
+{%- assign layout_filter = settings.layout_filter -%}
+ <!-- ibr code ld -->
+ {% if collection.handle == 'wakeboard-blems' %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Wakeboard Blems",
+      "description": "Shop blemished wakeboards at discounted prices at BuyWakeWorks.",
+      "url": "https://www.buywakeworks.com/sale/blems/wakeboards",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.buywakeworks.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Sale",
+            "item": "https://www.buywakeworks.com/sale"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Blems",
+            "item": "https://www.buywakeworks.com/sale/blems"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Wakeboard Blems",
+            "item": "https://www.buywakeworks.com/sale/blems/wakeboards"
+          }
+        ]
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "Product",
+            "name": "Blemished Hyperlite Wakeboard",
+            "image": "https://www.buywakeworks.com/images/blemished-hyperlite-wakeboard.jpg",
+            "description": "Blemished Hyperlite wakeboard available at a discounted price.",
+            "brand": {
+              "@type": "Brand",
+              "name": "Hyperlite"
+            },
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "USD",
+              "price": "200.00",
+              "availability": "https://schema.org/InStock",
+              "url": "https://www.buywakeworks.com/product/blemished-hyperlite-wakeboard"
+            }
+          }
+        ]
+      }
+    }
+  </script>
+  {%- elsif collection.handle == 'wakeboard-packages' -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Wakeboard Packages",
+      "description": "Find complete wakeboard packages at BuyWakeWorks, including boards, bindings, and accessories.",
+      "url": "https://www.buywakeworks.com/wake/wakeboard-packages",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.buywakeworks.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Wake",
+            "item": "https://www.buywakeworks.com/wake"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Wakeboard Packages",
+            "item": "https://www.buywakeworks.com/wake/wakeboard-packages"
+          }
+        ]
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "Product",
+            "name": "Liquid Force Wakeboard Package",
+            "image": "https://www.buywakeworks.com/images/liquid-force-wakeboard-package.jpg",
+            "description": "Complete Liquid Force wakeboard package with bindings and gear.",
+            "brand": {
+              "@type": "Brand",
+              "name": "Liquid Force"
+            },
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "USD",
+              "price": "499.99",
+              "availability": "https://schema.org/InStock",
+              "url": "https://www.buywakeworks.com/product/liquid-force-wakeboard-package"
+            }
+          }
+        ]
+      }
+    }
+  </script>
+   {%- elsif collection.handle == 'wakeboard-ropes-handles' -%}
+      <script type="application/ld+json">
+            {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Wakeboard Ropes & Handles",
+            "description": "Browse high-quality wakeboard ropes and handles at BuyWakeWorks.",
+            "url": "https://www.buywakeworks.com/wake/wakeboard-ropes-handles",
+            "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.buywakeworks.com/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Wake",
+                    "item": "https://www.buywakeworks.com/wake"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Wakeboard Ropes & Handles",
+                    "item": "https://www.buywakeworks.com/wake/wakeboard-ropes-handles"
+                }
+                ]
+            },
+            "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": [
+                {
+                    "@type": "Product",
+                    "name": "Hyperlite Wakeboard Rope",
+                    "image": "https://www.buywakeworks.com/images/hyperlite-wakeboard-rope.jpg",
+                    "description": "Durable Hyperlite wakeboard rope with floating handle.",
+                    "brand": {
+                    "@type": "Brand",
+                    "name": "Hyperlite"
+                    },
+                    "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "USD",
+                    "price": "89.99",
+                    "availability": "https://schema.org/InStock",
+                    "url": "https://www.buywakeworks.com/product/hyperlite-wakeboard-rope"
+                    }
+                }
+                ]
+            }
+            }
+        </script>
+          {%- elsif collection.handle == 'wakeboard-bags-acc' -%}
+      <script type="application/ld+json">
+            {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Wakeboard Bags & Accessories",
+            "description": "Protect your wakeboard with bags and accessories from BuyWakeWorks.",
+            "url": "https://www.buywakeworks.com/wake/wakeboard-bags-accessories",
+            "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.buywakeworks.com/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Wake",
+                    "item": "https://www.buywakeworks.com/wake"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Wakeboard Bags & Accessories",
+                    "item": "https://www.buywakeworks.com/wake/wakeboard-bags-accessories"
+                }
+                ]
+            },
+            "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": [
+                {
+                    "@type": "Product",
+                    "name": "Liquid Force Wakeboard Bag",
+                    "image": "https://www.buywakeworks.com/images/liquid-force-wakeboard-bag.jpg",
+                    "description": "Durable Liquid Force wakeboard bag with extra padding.",
+                    "brand": {
+                    "@type": "Brand",
+                    "name": "Liquid Force"
+                    },
+                    "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "USD",
+                    "price": "99.99",
+                    "availability": "https://schema.org/InStock",
+                    "url": "https://www.buywakeworks.com/product/liquid-force-wakeboard-bag"
+                    }
+                }
+                ]
+            }
+            }
+        </script>
+{% endif %}
+<div
+  id="JsCollectionProduct"
+  class="{{ select_columns }} {{ settings.select_columns_sm }} {{ settings.select_columns_xs }}"
+>
+  {% if collection.handle == 'blem'
+    or collection.handle == 'wake-foils'
+    or collection.handle == 'wakeboard-blems'
+    or collection.handle == 'water-ski-blems'
+  %}
+    <div class="collection-banner">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0896/7726/7313/files/banner_a52b3f1a-dc5b-4e3b-8360-e5e50ac565f4.jpg?v=1746531200"
+        class="collection-banner-img"
+      >
+    </div>
+  {% endif %}
+
+  {%- if layout_filter != 'on_top' -%}
+    <div class="page-width" id="main-collection-filters" data-id="{{ section.id }}">
+      {% include 'filter-dropdown', results: collection %}
+    </div>
+  {%- endif -%}
+  <div class="js-collection-content-product">
+    <div id="ProductGridContainer">
+      {%- paginate collection.products by page_item -%}
+        {%- if collection.products.size == 0 -%}
+          <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
+            <div class="title-wrapper center">
+              <h2 class="title title--primary">
+                {{ 'collection_template.empty' | t -}}
+                <br>
+                {{
+                  'collection_template.use_fewer_filters_html'
+                  | t: link: collection.url, class: 'underlined-link link'
+                }}
+              </h2>
+            </div>
+          </div>
+          <div id="product_result_count" class="hidden">{{ 'collection_template.empty' | t }}</div>
+        {%- else -%}
+          {%- if layout_filter == 'on_top' -%}
+            <div class="page-width" id="main-collection-filters" data-id="{{ section.id }}">
+              {% include 'filter-dropdown', results: collection %}
+            </div>
+          {%- endif -%}
+          <div class="collection page-width {{ section.settings.layput_shop }}">
+            <div id="product-grid" data-id="{{ section.id }}">
+              <div class="products__row row">
+                {%- for product in collection.products -%}
+                  {% if product.type != 'Gift Cards' %}
+                    <div class="products__col">
+                      {% include 'product-grid-item' %}
+                    </div>
+                  {%- endif -%}
+                {%- else -%}
+                  <div class="products__no-matches">{{ 'collections.general.no_matches' | t }}</div>
+                {%- endfor -%}
+              </div>
+              {%- assign min_page = 1 -%}
+              {%- assign max_page = paginate.page_size | times: paginate.current_page -%}
+              {%- if paginate.current_page > 1 -%}
+                {%- assign current_page = paginate.current_page | minus: 1 -%}
+              {%- endif -%}
+              {%- if max_page > paginate.items -%}
+                {%- assign max_page = paginate.items -%}
+              {%- endif -%}
+              {% assign percent = max_page | times: 100 | divided_by: paginate.items %}
+              <div id="product_result_count" class="hidden">
+                {{
+                  'collections.general.product_count_html'
+                  | t: min_page: min_page, max_page: max_page, items_page: paginate.items
+                }}
+              </div>
+              {%- if max_page <= paginate.items -%}
+                <div class="js-collection-{{ settings.select_pagination }} page-collection-footer">
+                  {%- if section.settings.numproduct_enable
+                    and settings.select_pagination == 'loadmore'
+                    and percent < 100
+                  -%}
+                    <div class="collection-product-count">
+                      {{
+                        'collections.general.product_count_html'
+                        | t: min_page: min_page, max_page: max_page, items_page: paginate.items
+                      }}
+                    </div>
+                    <div class="content-percent"><div class="percent" style="width:{{percent}}%"></div></div>
+                  {%- endif -%}
+                  {%- if paginate.pages > 1 -%}
+                    {% include 'pagination' %}
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endpaginate -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": "Collection pages",
+    "settings": [
+		 {
+        "type": "header",
+        "content": "Collection"
+      },
+      {
+        "type": "checkbox",
+        "id": "categories_enable",
+        "label": "Enable",
+        "default": true,
+		"info":"only used for filter dropdown and on top"
+      },
+      {
+        "type": "text",
+        "id": "categories_title",
+        "label": "Heading",
+        "default": "Collection",
+		"info":"only used for filter dropdown and on top"
+      },
+	  {
+      "type": "link_list",
+      "id": "categories_menu",
+      "label": "Menu",
+	  "info":"only used for filter dropdown and on top"
+    },
+	  {
+        "type": "checkbox",
+        "id": "show_count",
+        "label": "Show Count",
+        "default": true,
+		"info":"only used for filter dropdown and on top"
+      },
+	  {
+        "type": "header",
+        "content": "Layout shop"
+      },
+	  {
+		  "type": "select",
+		  "id": "layput_shop",
+		  "label": "Layout shop",
+		  "options": [
+			{
+			  "value": "simple",
+			  "label": "Simple"
+			},
+			{
+			  "value": "masonry",
+			  "label": "Masonry"
+			}
+		  ],
+		  "default": "simple"
+		},
+	  {
+        "type": "header",
+        "content": "Number products"
+      },
+		{
+			"type": "range",
+			"id": "page_item",
+			"label": "Number of products in a page",
+			"min": 1,
+			"max": 24,
+			"step": 1,
+			"default": 12
+		},
+		{
+			"type": "header",
+			"content": "Product Count"
+		},
+		{
+			"type": "checkbox",
+			"id": "numproduct_enable",
+			"label": "Enable",
+			"default": true
+		}
+    ]
+}
+{% endschema %}

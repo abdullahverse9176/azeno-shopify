@@ -1,0 +1,96 @@
+{% schema %}
+{
+  "name": "Banner Image CTA",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "cta_image",
+      "label": "CTA Button Image"
+    },
+    {
+      "type": "url",
+      "id": "banner_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "text",
+      "id": "alt_text",
+      "label": "Banner Alt Text",
+      "default": "Banner Image"
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "label": "Image Height",
+      "options": [
+        { "value": "auto", "label": "Auto" },
+        { "value": "400px", "label": "400px" },
+        { "value": "600px", "label": "600px" },
+        { "value": "800px", "label": "800px" }
+      ],
+      "default": "auto"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Image CTA",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.banner-image-link-section {
+  position: relative;
+}
+
+.banner-image-link-section img {
+  width: 100%;
+  height: {{ section.settings.image_height }};
+  object-fit: cover;
+  display: block;
+}
+
+.hero-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+}
+
+.hero-btn img {
+  max-width: 220px; /* adjust as needed */
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.hero-btn:hover img {
+  transform: scale(1.05);
+}
+
+{% endstylesheet %}
+
+<section class="banner-image-link-section" id="shopify-section-{{ section.id }}">
+
+  {% if section.settings.banner_image %}
+    <img
+      src="{{ section.settings.banner_image | img_url: '2000x' }}"
+      alt="{{ section.settings.alt_text }}">
+  {% endif %}
+
+  {% if section.settings.banner_link != blank and section.settings.cta_image != blank %}
+    <a href="{{ section.settings.banner_link }}" class="hero-btn">
+      <img
+        src="{{ section.settings.cta_image | img_url: '500x' }}"
+        alt="CTA Button">
+    </a>
+  {% endif %}
+
+</section>

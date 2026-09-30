@@ -1,0 +1,70 @@
+{% comment %} Override theme settings to force filters {% endcomment %}
+{%- assign renamed_variable_settings_2e_sidebar_enable = true -%}
+{%- assign renamed_variable_settings_2e_layout_filter = 'sidebar' -%}
+{% comment %}
+  Template for /collections/all with filters enabled
+  Based on original collection.liquid
+{% endcomment %}
+
+{%- assign sidebar_enable = true -%}
+{% comment %} Force sidebar enabled {% endcomment %}
+{%- assign layout_filter = settings.layout_filter -%}
+{%- assign shop_full = settings.shop_full -%}
+
+{% comment %} Sidebar column classes {% endcomment %}
+{%- assign sidebar_left_class = 'col-12' -%}
+{%- assign sidebar_right_class = 'col-12' -%}
+{%- if sidebar_enable and layout_filter contains 'sidebar' -%}
+  {%- assign sidebar_left_class = 'col-12 col-lg-12 col-xl-3' -%}
+  {%- assign sidebar_right_class = 'col-12 col-lg-12 col-xl-9' -%}
+{%- endif -%}
+
+{% section 'collection-banner' %}
+{% section 'collection-breadcrumb' %}
+
+<section
+  class="js-page-collection page-collection {{ settings.style_view_items }} {{ layout_filter }}{% if shop_full %} shop_full{% endif %}"
+  {% if settings.style_view_items == 'viewmore' %}
+    data-list_number="{{ settings.count_items }}"
+  {% endif %}
+>
+  <div class="container">
+    <div class="page-collection__inner">
+      <div class="row">
+        {% comment %} Sidebar Section {% endcomment %}
+        {%- if sidebar_enable and layout_filter contains 'sidebar' -%}
+          <aside class="collection-sidebar {{ sidebar_left_class }}">
+            <div class="collection-sidebar__overlay"></div>
+            <div class="collection-sidebar__wapper">
+              <button class="js-sidebar-toggle collection-sidebar__close" type="button">
+                <span>{{ 'collections.sidebar.close' | t }}</span>
+              </button>
+              <div class="content-sidebar">
+                {% section 'collection-sidebartop' %}
+                {% section 'collection-sidebarbottom' %}
+              </div>
+            </div>
+          </aside>
+        {%- endif -%}
+
+        {% comment %} Main Content Area {% endcomment %}
+        <div class="collection-content {{ sidebar_right_class }}">
+          {% section 'collection-template' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- assign settings.sidebar_enable = true -%}"
+  to: "{%- assign renamed_variable_settings_2e_sidebar_enable = true -%}"
+  position: 72..137
+- from: "{%- assign settings.layout_filter = 'sidebar' -%}"
+  to: "{%- assign renamed_variable_settings_2e_layout_filter = 'sidebar' -%}"
+  position: 138..207
+{% endcomment %}

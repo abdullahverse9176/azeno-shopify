@@ -1,0 +1,867 @@
+{% comment %}
+Custom Shopify Section: Boat Prop Filter System (Improved Layout)
+{% endcomment %}
+
+<div class="prop-finder-container">
+  <!-- Header Section -->
+  <div class="prop-finder-header">
+    <h1 class="section-title">Prop Finder</h1>
+    <p class="section-description">
+      Find the perfect propeller for your boat in seconds. Select your boat details and usage conditions below, 
+      and we'll recommend the ideal prop for your setup.
+    </p>
+  </div>
+
+  <!-- Boat Details Section (Centered) -->
+  <div class="boat-details-section">
+    <div class="boat-details-card">
+      <h3 class="card-title">Your Boat Details</h3>
+      <div class="boat-selects">
+        <div class="select-group">
+          <label for="year-select">Year</label>
+          <select id="year-select" class="custom-select">
+            <option value="" disabled selected>Select Year</option>
+          </select>
+        </div>
+        <div class="select-group">
+          <label for="make-select">Make</label>
+          <select id="make-select" class="custom-select">
+            <option value="" disabled selected>Select Make</option>
+          </select>
+        </div>
+        <div class="select-group">
+          <label for="model-select">Model</label>
+          <select id="model-select" class="custom-select">
+            <option value="" disabled selected>Select Model</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Grid -->
+  <div class="prop-finder-grid">
+    <!-- Usage Conditions Section (Left) -->
+    <div class="usage-conditions-section">
+      <div class="filter-card">
+        <h3 class="card-title">Usage Conditions</h3>
+        
+        <div class="filter-group" data-filter="weight">
+          <label class="filter-label">Added Weight</label>
+          <div class="filter-options">
+            <div class="filter-option" data-value="0">
+              <img src="{{ 'LowWeightOFF.png' | asset_url }}" alt="Low Weight" class="filter-icon" />
+            </div>
+            <div class="filter-option" data-value="1">
+              <img src="{{ 'MediumWeightOFF.png' | asset_url }}" alt="Medium Weight" class="filter-icon" />
+            </div>
+            <div class="filter-option" data-value="2">
+              <img src="{{ 'HighWeightOFF.png' | asset_url }}" alt="High Weight" class="filter-icon" />
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-group" data-filter="elevation">
+          <label class="filter-label">Elevation</label>
+          <div class="filter-options">
+            <div class="filter-option" data-value="0">
+              <img src="{{ 'LowElevationOFF.png' | asset_url }}" alt="Low Elevation" class="filter-icon" />
+            </div>
+            <div class="filter-option" data-value="1">
+              <img src="{{ 'MediumElevationOFF.png' | asset_url }}" alt="Medium Elevation" class="filter-icon" />
+            </div>
+            <div class="filter-option" data-value="2">
+              <img src="{{ 'HighElevationOFF.png' | asset_url }}" alt="High Elevation" class="filter-icon" />
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-group" data-filter="wake">
+          <label class="filter-label">Target Wake Size</label>
+          <div class="filter-options">
+            <div class="filter-option" data-value="0">
+              <img src="{{ 'SmallWakeOFF.png' | asset_url }}" alt="Small Wake" class="filter-icon" />
+            </div>
+            <div class="filter-option" data-value="1">
+              <img src="{{ 'MediumWakeOFF.png' | asset_url }}" alt="Medium Wake" class="filter-icon" />
+            </div>
+            <div class="filter-option" data-value="2">
+              <img src="{{ 'LargeWakeOFF.png' | asset_url }}" alt="Large Wake" class="filter-icon" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section (Right) -->
+    <div class="results-section">
+      <div class="results-card">
+        <h3 class="results-title">Your Recommended Prop</h3>
+        <div id="loading-indicator" class="loading-container" style="display: none;">
+          <div class="loading-spinner">
+            <div class="spinner-icon"></div>
+            <p>Finding your perfect prop...</p>
+          </div>
+        </div>
+        <div id="product-output" class="product-output">
+          <div class="empty-state">
+            <div class="empty-icon">🚤</div>
+            <h4>Ready to Find Your Prop?</h4>
+            <p>Complete the form above to get your personalized propeller recommendation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  let propData = [];
+  
+  // Load the boat prop data
+  fetch('{{ 'boat_prop_results_sheet2_1.json' | asset_url }}')
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('Failed to load prop data');
+      }
+      return res.json();
+    })
+    .then(data => {
+      propData = data;
+      console.log('Loaded prop data:', propData.length, 'records');
+      initializeFilters();
+    })
+    .catch(error => {
+      console.error('Error loading prop data:', error);
+      document.getElementById('product-output').innerHTML = `
+        <div class="error-state">
+          <div class="error-icon">⚠️</div>
+          <h4>System Error</h4>
+          <p>Unable to load prop database. Please refresh the page or contact us for assistance.</p>
+        </div>
+      `;
+    });
+
+  function initializeFilters() {
+    const selects = {
+      year: document.getElementById('year-select'),
+      make: document.getElementById('make-select'),
+      model: document.getElementById('model-select')
+    };
+
+    const filters = { weight: null, elevation: null, wake: null };
+
+    // Populate years
+    try {
+      const years = [...new Set(propData.map(row => row.Year))].filter(y => y).sort();
+      years.forEach(y => {
+        const option = document.createElement('option');
+        option.value = y;
+        option.textContent = y;
+        selects.year.appendChild(option);
+      });
+    } catch (error) {
+      console.error('Error populating years:', error);
+    }
+
+    // Year change handler
+    selects.year.addEventListener('change', () => {
+      try {
+        const selectedYear = String(selects.year.value).trim();
+        const makes = [...new Set(
+          propData
+            .filter(r => String(r.Year).trim() === selectedYear)
+            .map(r => String(r.Make).trim())
+            .filter(m => m)
+        )].sort();
+
+        // Clear and repopulate makes
+        selects.make.innerHTML = '<option value="" disabled selected>Select Make</option>';
+        makes.forEach(make => {
+          const option = document.createElement('option');
+          option.value = make;
+          option.textContent = make;
+          selects.make.appendChild(option);
+        });
+
+        // Reset model dropdown
+        selects.model.innerHTML = '<option value="" disabled selected>Select Model</option>';
+        
+        updateRecommendation();
+      } catch (error) {
+        console.error('Error updating makes:', error);
+      }
+    });
+
+    // Make change handler
+    selects.make.addEventListener('change', () => {
+      try {
+        const selectedYear = String(selects.year.value).trim();
+        const selectedMake = String(selects.make.value).trim();
+        const models = [...new Set(
+          propData
+            .filter(r => String(r.Year).trim() === selectedYear && String(r.Make).trim() === selectedMake)
+            .map(r => String(r.Model).trim())
+            .filter(m => m)
+        )].sort();
+
+        // Clear and repopulate models
+        selects.model.innerHTML = '<option value="" disabled selected>Select Model</option>';
+        models.forEach(model => {
+          const option = document.createElement('option');
+          option.value = model;
+          option.textContent = model;
+          selects.model.appendChild(option);
+        });
+        
+        updateRecommendation();
+      } catch (error) {
+        console.error('Error updating models:', error);
+      }
+    });
+
+    // Model change handler
+    selects.model.addEventListener('change', updateRecommendation);
+
+    // Filter option handlers
+    document.querySelectorAll('.filter-option').forEach(option => {
+      option.addEventListener('click', () => {
+        try {
+          const group = option.closest('.filter-group').dataset.filter;
+          const value = parseInt(option.dataset.value);
+          
+          filters[group] = value;
+
+          // Reset all options in this group
+          option.parentNode.querySelectorAll('.filter-option').forEach(opt => {
+            opt.classList.remove('selected');
+            const img = opt.querySelector('img');
+            if (img) {
+              img.src = img.src.replace(/ON|OFF/, 'OFF');
+            }
+          });
+
+          // Set selected option
+          option.classList.add('selected');
+          const img = option.querySelector('img');
+          if (img) {
+            img.src = img.src.replace(/ON|OFF/, 'ON');
+          }
+
+          updateRecommendation();
+        } catch (error) {
+          console.error('Error handling filter click:', error);
+        }
+      });
+      
+      // Handle image load errors gracefully
+      const img = option.querySelector('img');
+      if (img) {
+        img.addEventListener('error', () => {
+          console.warn(`Failed to load image: ${img.src}`);
+          img.style.backgroundColor = '#f0f0f0';
+          img.style.border = '2px dashed #ccc';
+        });
+      }
+    });
+
+    // Main recommendation update function
+    async function updateRecommendation() {
+      try {
+        const year = selects.year.value;
+        const make = selects.make.value;
+        const model = selects.model.value;
+
+        // Check if all required fields are selected
+        if (!year || !make || !model) {
+          document.getElementById('product-output').innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">🚤</div>
+              <h4>Select Your Boat</h4>
+              <p>Please select your boat's year, make, and model to continue.</p>
+            </div>
+          `;
+          return;
+        }
+
+        // Check if usage conditions are selected
+        if (filters.weight === null || filters.elevation === null || filters.wake === null) {
+          document.getElementById('product-output').innerHTML = `
+            <div class="partial-state">
+              <div class="partial-icon">⚙️</div>
+              <h4>Almost There!</h4>
+              <p>Please select your usage conditions (weight, elevation, and wake size) to get your prop recommendation.</p>
+            </div>
+          `;
+          return;
+        }
+
+        const tier = filters.weight + filters.elevation + filters.wake;
+
+        // Show loading
+        document.getElementById('loading-indicator').style.display = 'block';
+        document.getElementById('product-output').innerHTML = '';
+
+        // Find matching boat in data
+        const match = propData.find(row => 
+          String(row.Year).trim() === String(year).trim() && 
+          String(row.Make).trim() === String(make).trim() && 
+          String(row.Model).trim() === String(model).trim()
+        );
+
+        if (!match) {
+          document.getElementById('loading-indicator').style.display = 'none';
+          document.getElementById('product-output').innerHTML = `
+            <div class="no-match-state">
+              <div class="no-match-icon">🔍</div>
+              <h4>Boat Not Found</h4>
+              <p>We don't have prop data for the ${year} ${make} ${model} in our current database.</p>
+              <div class="action-buttons">
+                <a href="/contact" class="btn btn-primary">Contact Us for Help</a>
+                <a href="/search?q=propeller&type=product" class="btn btn-secondary">Browse All Props</a>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        // Calculate prop tier (1-7 based on filter selections)
+        const tierKey = `Prop ${Math.min(tier + 1, 7)}`;
+        const propCode = match[tierKey];
+
+        console.log('Boat match found:', match);
+        console.log('Tier:', tierKey, 'Prop Code:', propCode);
+
+        document.getElementById('loading-indicator').style.display = 'none';
+
+        if (!propCode || propCode.trim() === '') {
+          document.getElementById('product-output').innerHTML = `
+            <div class="no-recommendation-state">
+              <div class="no-recommendation-icon">❓</div>
+              <h4>No Recommendation Available</h4>
+              <p>No specific prop recommendation is available for this configuration.</p>
+              <div class="action-buttons">
+                <a href="/contact" class="btn btn-primary">Contact Us for Help</a>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        // Try to display product card; fall back to prop recommendation
+        try {
+          await displayProductCardGrid(propCode);
+        } catch (error) {
+          console.error('Product card fetch failed:', error);
+          displayPropRecommendation(propCode);
+        }
+
+      } catch (error) {
+        console.error('Error updating recommendation:', error);
+        document.getElementById('loading-indicator').style.display = 'none';
+        document.getElementById('product-output').innerHTML = `
+          <div class="error-state">
+            <div class="error-icon">⚠️</div>
+            <h4>Error</h4>
+            <p>Unable to process your selection. Please try again or contact us for assistance.</p>
+          </div>
+        `;
+      }
+    }
+
+    // Display product card if found
+    async function displayProductCardGrid(propCode) {
+      const strippedCode = propCode.replace(/^DROP/i, '');
+
+      try {
+        // Step 1: Get product data for the image and title
+        const suggestResponse = await fetch(`/search/suggest.json?q=${encodeURIComponent(strippedCode)}&resources[type]=product`);
+        const suggestData = await suggestResponse.json();
+        const match = suggestData.resources?.results?.products?.find(product =>
+          product.title.toLowerCase().includes(strippedCode.toLowerCase())
+        );
+
+        if (!match || !match.handle) throw new Error('No matching product found');
+
+        // Step 2: Get product card HTML
+        const response = await fetch(`/products/${match.handle}?view=card`);
+        if (!response.ok) throw new Error('Failed to load product card view');
+
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const card = doc.querySelector('.product-card');
+
+        if (!card) throw new Error('Product card element not found in HTML');
+
+        // Step 3: Clone the card
+        const clonedCard = card.cloneNode(true);
+
+        // Step 4: Inject image manually into Azeno lazy-loaded wrapper
+        const imageDiv = clonedCard.querySelector('#pre-loading-img-product') ||
+                       clonedCard.querySelector('.product-card__image-link') ||
+                       clonedCard.querySelector('.product-card img');
+
+        if (imageDiv && match.image) {
+          imageDiv.style.backgroundImage = `url(${match.image})`;
+          imageDiv.style.backgroundSize = 'cover';
+          imageDiv.style.backgroundRepeat = 'no-repeat';
+          imageDiv.style.backgroundPosition = 'center';
+          imageDiv.style.minHeight = '150px';
+          imageDiv.style.width = '100%';
+          imageDiv.style.display = 'block';
+          imageDiv.style.opacity = '1';
+        }
+
+        // Step 5: Render card
+        const container = document.getElementById('product-output');
+        container.innerHTML = '';
+        container.appendChild(clonedCard);
+
+      } catch (error) {
+        console.error('displayProductCardGrid error:', error);
+        displayPropRecommendation(propCode);
+      }
+    }
+
+    // Display prop recommendation when product not found
+    function displayPropRecommendation(propCode) {
+      document.getElementById('product-output').innerHTML = `
+        <div class="prop-recommendation-state">
+          <div class="prop-icon">🚤</div>
+          <h4>Recommended Propeller</h4>
+          <div class="prop-code-display">${propCode}</div>
+          <p>Based on your boat configuration and usage conditions, we recommend the <strong>${propCode}</strong> propeller.</p>
+          <div class="action-buttons">
+            <a href="/search?q=${encodeURIComponent(propCode)}&type=product" class="btn btn-primary">Search Our Store</a>
+            <a href="/contact" class="btn btn-secondary">Contact for Availability</a>
+          </div>
+          <div class="recommendation-note">
+            <small>Can't find this exact prop? Our team can help you locate it or suggest alternatives.</small>
+          </div>
+        </div>
+      `;
+    }
+  }
+});
+</script>
+
+<style>
+/* Global Styles */
+.prop-finder-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* Header Styles - More compact */
+.prop-finder-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: #2FA8FF;
+  border-radius: 16px;
+  color: white;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 4rem;
+  font-weight: 500;
+  margin: 0 0 1rem 0;
+  color: white;
+}
+
+.section-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.95;
+  max-width: 600px;
+  margin: 0 auto;
+  color: white;
+}
+
+/* Boat Details Section - Centered horizontal layout */
+.boat-details-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.boat-details-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+  max-width: 800px;
+  width: 100%;
+}
+
+.boat-details-card .card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+
+/* Horizontal Boat Selects */
+.boat-selects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.select-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.select-group label {
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.custom-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+  padding: 0.75rem 3rem 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #495057;
+  line-height: 1.4;
+  width: 100%;
+  box-sizing: border-box;
+  
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 1.2em 1.2em;
+  
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.custom-select:hover {
+  border-color: #3498db;
+}
+
+.custom-select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* Main Grid Layout - Side by side */
+.prop-finder-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Usage Conditions Section (Left) */
+.usage-conditions-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+  height: fit-content;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+/* Results Section (Right) */
+.results-section {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  height: fit-content;
+}
+
+.results-card {
+  padding: 2rem;
+  min-height: 400px;
+}
+
+.results-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  color: #2c3e50;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+.product-output {
+  min-height: 300px;
+}
+
+/* Filter Groups */
+.filter-group {
+  margin: 1.5rem 0;
+}
+
+.filter-label {
+  display: block;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.filter-options {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+/* Updated Filter Options - Larger icons, no text, circular border */
+.filter-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border: 3px solid #e9ecef;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+  width: 120px;
+  height: 120px;
+  box-sizing: border-box;
+}
+
+.filter-option:hover {
+  border-color: #3498db;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+}
+
+.filter-option.selected {
+  border-color: #3498db;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+/* Larger icons, no text labels */
+.filter-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: white;
+}
+
+/* Hide option labels since icons have text built-in */
+.option-label {
+  display: none;
+}
+
+/* Loading States */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.loading-spinner {
+  text-align: center;
+}
+
+.spinner-icon {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* State Styles */
+.empty-state, .partial-state, .no-match-state, .no-recommendation-state, .error-state, .prop-recommendation-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  margin: 1rem 0;
+}
+
+.empty-state {
+  background: linear-gradient(135deg, #e8f4fd 0%, #d6eafd 100%);
+  border: 2px solid #3498db;
+}
+
+.partial-state {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+  border: 2px solid #ffc107;
+}
+
+.no-match-state, .no-recommendation-state {
+  background: linear-gradient(135deg, #f8d7da 0%, #f1c2c7 100%);
+  border: 2px solid #dc3545;
+}
+
+.error-state {
+  background: linear-gradient(135deg, #f8d7da 0%, #f1c2c7 100%);
+  border: 2px solid #dc3545;
+}
+
+.prop-recommendation-state {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  border: 2px solid #28a745;
+}
+
+.empty-icon, .partial-icon, .no-match-icon, .no-recommendation-icon, .error-icon, .prop-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.prop-code-display {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1976d2;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  border: 2px dashed #2196f3;
+}
+
+.recommendation-note {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  font-style: italic;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.875rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: #3498db;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
+/* Product Card Styling */
+.product-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  border: 2px solid #dee2e6;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img:not(:first-of-type) {
+  display: none !important;
+}
+
+.product-card img {
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  background: white;
+  padding: 0.5rem;
+  border: 1px solid #e9ecef;
+}
+
+.product-card__image,
+.product-image,
+.card-image,
+#pre-loading-img-product {
+  min-width: 200px;
+  min-height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-card__image:not

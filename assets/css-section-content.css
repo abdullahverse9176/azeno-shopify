@@ -1,0 +1,20 @@
+.wpbingo-section--rich-text {
+    border-top: 1px solid #e8e8e8;
+}
+.wpbingo-section--rich-text .slick-arrow {
+    width: unset;
+    height: unset;
+    border: 0;
+    opacity: 1;
+    visibility: visible;
+    color: var(--text-color);
+    top: calc(50% - 16px);
+    box-shadow: none;
+}
+.wpbingo-section--rich-text .slick-arrow::before {
+    font-size: 10px;
+}
+.wpbingo-section--rich-text .slick-arrow:hover {
+    color: var(--theme-color);
+    background: transparent;
+}

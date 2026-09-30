@@ -1,0 +1,291 @@
+{%- assign full_description = product.description -%}
+<section class="product-more-info {{ section.settings.tab_layout }}" style="margin:{{ section.settings.margin }}">
+  <div class="product-more-info__inner">
+    {%- if section.settings.tab_layout == 'full-content' -%}
+      <div class="container">
+        <div class="more-info-tabs__content tab-content">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'tab_description' -%}
+                {%- if full_description != blank -%}
+                  <h3 class="more-info-tabs__nav-item">
+                    {{ block.settings.title_description }}
+                  </h3>
+                  <div class="more-tab-container">
+                    <div class="more-info-tabs__nav-link mobile" data-id="js-more-info-tabs-{{ forloop.index }}">
+                      <span>{{ block.settings.title_description }}</span>
+                    </div>
+                    <div id="js-more-info-tabs-{{ forloop.index }}" class="tab-pane fade {{ classes }}">
+                      <div class="rte">
+                        {{ full_description }}
+                      </div>
+                    </div>
+                  </div>
+                {%- endif -%}
+              {%- when 'tab_review' -%}
+                <h3 class="more-info-tabs__nav-item">
+                  {{ block.settings.title_review }}
+                </h3>
+                <div class="more-tab-container">
+                  <div class="more-info-tabs__nav-link mobile" data-id="js-more-info-tabs-{{ forloop.index }}">
+                    <span>{{ block.settings.title_review }}</span>
+                  </div>
+                  <div id="js-more-info-tabs-{{ forloop.index }}" class="tab-pane fade {{ classes }}">
+                    <!-- Start of Judge.me code -->
+                    <div style="clear:both"></div>
+                    <div id="judgeme_product_reviews" class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}">
+                      {{ product.metafields.judgeme.widget }}
+                    </div>
+                    <!-- End of Judge.me code -->
+                  </div>
+                </div>
+              {%- when 'tab_custom' -%}
+                <h3 class="more-info-tabs__nav-item">
+                  {{ block.settings.title_custom }}
+                </h3>
+                <div class="more-tab-container">
+                  <div class="more-info-tabs__nav-link mobile" data-id="js-more-info-tabs-{{ forloop.index }}">
+                    <span>{{ block.settings.title_custom }}</span>
+                  </div>
+                  <div id="js-more-info-tabs-{{ forloop.index }}" class="tab-pane fade {{ classes }}">
+                    <div class="rte">{{ block.settings.content_custom }}</div>
+                  </div>
+                </div>
+              {%- when 'tab_metafields' -%}
+                <h3 class="more-info-tabs__nav-item">
+                  {{ block.settings.title_custom }}
+                </h3>
+                <div class="more-tab-container">
+                  <div class="more-info-tabs__nav-link mobile" data-id="js-more-info-tabs-{{ forloop.index }}">
+                    <span>{{ block.settings.title_metafields }}</span>
+                  </div>
+                  <div id="js-more-info-tabs-{{ forloop.index }}" class="tab-pane fade {{ classes }}">
+                    <div class="rte">{{ block.settings.content_metafields }}</div>
+                  </div>
+                </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- else -%}
+      <div class="container">
+        <div class="content-ul-tab">
+          <ul class="more-info-tabs__nav nav">
+            {%- for block in section.blocks -%}
+              {%- capture classes -%}
+								{%- if forloop.first -%}
+									active
+								{%- endif -%}
+							{%- endcapture %}
+              {%- case block.type -%}
+                {%- when 'tab_description' -%}
+                  {%- if full_description != blank -%}
+                    <li class="more-info-tabs__nav-item">
+                      <div
+                        class="more-info-tabs__nav-link {{ classes }}"
+                        data-id="js-more-info-tabs-{{ forloop.index }}"
+                      >
+                        <span>{{ block.settings.title_description }}</span>
+                      </div>
+                    </li>
+                  {%- endif -%}
+                {%- when 'tab_review' -%}
+                  <li class="more-info-tabs__nav-item">
+                    <div class="more-info-tabs__nav-link {{ classes }}" data-id="js-more-info-tabs-{{ forloop.index }}">
+                      <span>{{ block.settings.title_review }}</span>
+                    </div>
+                  </li>
+                {%- when 'tab_custom' -%}
+                  <li class="more-info-tabs__nav-item">
+                    <div class="more-info-tabs__nav-link {{ classes }}" data-id="js-more-info-tabs-{{ forloop.index }}">
+                      <span>{{ block.settings.title_custom }}</span>
+                    </div>
+                  </li>
+                {%- when 'tab_metafields' -%}
+                  <li class="more-info-tabs__nav-item">
+                    <div class="more-info-tabs__nav-link {{ classes }}" data-id="js-more-info-tabs-{{ forloop.index }}">
+                      <span>{{ block.settings.title_metafields }}</span>
+                    </div>
+                  </li>
+              {%- endcase -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <!-- ibr code tabs -->
+<div class="more-info-tabs__content tab-content">
+    {%- assign tab_index = 1 -%}
+    {%- capture classes -%}{% if tab_index == 1 %}show active{% else %}fade{% endif %}{%- endcapture -%}
+    <!-- Description Tab -->
+    <div class="more-tab-container">
+        <div class="more-info-tabs__nav-link mobile" data-id="js-more-info-tabs-1">
+            <span>Description</span>
+        </div>
+        <div id="js-more-info-tabs-1" class="tab-pane {{ classes }}">
+            <div class="rte">
+                {{ product.description }}
+            </div>
+        </div>
+    </div>
+    {%- assign tab_index = tab_index | plus: 1 -%}
+    {%- capture classes -%}{% if tab_index == 1 %}show active{% else %}fade{% endif %}{%- endcapture -%}
+    <!-- Shipping Tab -->
+    <div class="more-tab-container">
+        <div class="more-info-tabs__nav-link mobile" data-id="js-more-info-tabs-2">
+            <span>Shipping</span>
+        </div>
+        <div id="js-more-info-tabs-2" class="tab-pane fade">
+            <div class="rte">
+                <!-- Your static shipping content here -->
+                <p>We offer fast and reliable shipping. Orders are processed within 1-2 business days.</p>
+            </div>
+        </div>
+    </div>
+    {%- assign tab_index = tab_index | plus: 1 -%}
+    <!-- Return Tab -->
+    <div class="more-tab-container">
+        <div class="more-info-tabs__nav-link mobile" data-id="js-more-info-tabs-3">
+            <span>Return</span>
+        </div>
+        <div id="js-more-info-tabs-3" class="tab-pane fade">
+            <div class="rte">
+                <!-- Your static return content here -->
+                <p>Returns are accepted within 30 days of delivery. Please contact support for assistance.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Add more tabs as needed -->
+</div>
+
+
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+ {
+   "name": "Product Tab",
+   "settings": [
+	{
+		"type": "text",
+		"id": "margin",
+		"label": "Margin",
+		"default": "30px 0"
+	},
+	{
+		"type": "select",
+		"id": "tab_layout",
+		"label": "Tab layout",
+		"default": "tab",
+		"options": [
+			{
+				"value": "tab",
+				"label": "Tab"
+			},
+			{
+				"value": "vertical",
+				"label": "Vertical"
+			},
+			{
+				"value": "full-content",
+				"label": "Full Content"
+			}
+		]
+	}
+   ],
+"blocks": [
+	{
+           "type": "@app"
+       },
+	{
+		"type": "tab_description",
+		"name": "Tab description",
+           "limit": 1,
+           "settings": [
+			{
+				"type": "text",
+				"id": "title_description",
+				"label": "Title description",
+				"default": "Description"
+			}
+           ]
+	},
+	{
+		"type": "tab_review",
+		"name": "Tab review",
+           "limit": 1,
+           "settings": [
+			{
+				"type": "text",
+				"id": "title_review",
+				"label": "Title review",
+				"default": "Review"
+			}
+           ]
+	},
+	{
+		"type": "tab_custom",
+		"name": "Tab custom",
+           "settings": [
+			{
+				"type": "text",
+				"id": "title_custom",
+				"label": "Title custom",
+				"default": "Custom"
+			},
+			{
+				"type": "textarea",
+				"id": "content_custom",
+				"label": "Content custom",
+				"default": "Custom"
+			}
+           ]
+	},
+	{
+		"type": "tab_metafields",
+		"name": "Tab metafields",
+           "settings": [
+			{
+				"type": "text",
+				"id": "title_metafields",
+				"label": "Title metafields",
+				"default": "metafields"
+			},
+			{
+				"type": "text",
+				"id": "content_metafields",
+				"label": "Content metafields"
+			}
+           ]
+	}
+],
+"templates": ["product"],
+"presets": [
+	{
+		"name": "Product Tab",
+		"blocks": [
+               {
+                   "type": "tab_description"
+               },
+               {
+                   "type": "tab_review"
+               },
+			{
+                   "type": "tab_custom"
+               }
+		]
+	}
+   ]
+ }
+{% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{%- capture "classes" -%}'
+  to: "{%- capture classes -%}"
+  position: 3770..3793
+{% endcomment %}

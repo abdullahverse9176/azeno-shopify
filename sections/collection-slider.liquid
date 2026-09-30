@@ -1,0 +1,152 @@
+
+<style>
+  .collection-images{
+      display: flex;
+      flex-wrap: wrap;
+  }
+  .collection-item {
+    width: calc(100% / 4);
+    padding: 15px;
+  }
+  .collection-item a{
+    display: block;
+    width:100%;
+    height:100%;
+  }
+  .collection-img{
+    position: relative;
+    padding-top: 114%;
+  }
+  .collection-img img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 991px) {
+    .collection-item {
+      width: calc(100% / 2);
+    }
+  }
+   @media (max-width: 767px) {
+    .collection-item {
+      width: 100%;
+    }
+  }
+</style>
+<div class="collection-images" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px">
+  {% if section.settings.slider_img_1 %}
+    <div class="collection-item">
+      <a href="{{ section.settings.collection_url_1 }}">
+        <div class="collection-img">
+          <img src="{{ section.settings.slider_img_1 | image_url: master }}" alt="Collection Image 1">
+        </div>
+      </a>
+    </div>
+  {% endif %}
+
+  {% if section.settings.slider_img_2 %}
+    <div class="collection-item">
+      <a href="{{ section.settings.collection_url_2 }}">
+        <div class="collection-img">
+          <img src="{{ section.settings.slider_img_2 | image_url: master }}" alt="Collection Image 2">
+        </div>
+      </a>
+    </div>
+  {% endif %}
+
+  {% if section.settings.slider_img_3 %}
+    <div class="collection-item">
+      <a href="{{ section.settings.collection_url_3 }}">
+       <div class="collection-img">
+          <img src="{{ section.settings.slider_img_3 | image_url: master }}" alt="Collection Image 3">
+        </div>
+      </a>
+    </div>
+  {% endif %}
+
+  {% if section.settings.slider_img_4 %}
+    <div class="collection-item">
+      <a href="{{ section.settings.collection_url_3 }}">
+        <div class="collection-img">
+          <img src="{{ section.settings.slider_img_4 | image_url: master }}" alt="Collection Image 4">
+        </div>
+      </a>
+    </div>
+  {% endif %}
+  
+</div>
+
+{% schema %}
+{
+  "name": "Collection slider",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "slider_img_1",
+      "label": "Collection Image 1"
+    },
+    {
+      "type": "url",
+      "id": "collection_url_1",
+      "label": "Collection URL 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "slider_img_2",
+      "label": "Collection Image 2"
+    },
+    {
+      "type": "url",
+      "id": "collection_url_2",
+      "label": "Collection URL 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "slider_img_3",
+      "label": "Collection Image 3"
+    },
+    {
+      "type": "url",
+      "id": "collection_url_3",
+      "label": "Collection URL 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "slider_img_4",
+      "label": "Collection Image 4"
+    },
+    {
+      "type": "url",
+      "id": "collection_url_4",
+      "label": "Collection URL 4"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "default": 10,
+      "min": 0,
+      "max": 50,
+      "step": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection slider"
+    }
+  ]
+}
+{% endschema %}

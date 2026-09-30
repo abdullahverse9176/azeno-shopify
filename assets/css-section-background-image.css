@@ -1,0 +1,29 @@
+.wpbingo-section--background .content-item {
+  background: var(--white);
+  padding: 45px 140px 60px 60px;
+}
+.wpbingo-section--background .bwp-button {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+  border: 0;
+  text-transform: revert;
+}
+.wpbingo-section--background .bwp-button::before{
+  position: absolute;
+  left: 0;
+  content: "";
+  height: 100%;
+  width: 0;
+  top: 0;
+  z-index: -1;
+  transition:all 0.3s ease;
+}
+.wpbingo-section--background .bwp-button:hover:before {
+  width: 100%;
+}
+@media (max-width: 991px) {
+  .wpbingo-section--background .content-item {
+    padding: 30px;
+  }
+}

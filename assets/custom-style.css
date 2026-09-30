@@ -1,0 +1,213 @@
+/* .menu-dropdown:hover>.menu-dropdown__content, .menu-dropdown:focus>.menu-dropdown__content {
+    opacity: unset;
+    visibility: unset;
+    display: none;
+}
+.show-dropdown{
+  display: block !important;
+} */
+
+/*drpopdown code end here  */
+.collection-card__image {
+  position: relative;
+  padding-top: 90%;
+}
+.collection-card__image img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  object-fit: cover;
+}
+.bwp-widget-banner .position-absolute {
+  top: 0 !important;
+  transform: translateY(0) !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.bwp-widget-banner .bwp-image {
+  padding-top: 50px !important;
+}
+.sidebar-categories {
+  display: none;
+}
+
+.lookbook-instagram-slider .lookbook-image img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+}
+
+.megamenu-banner > a {
+  position: relative;
+  padding-top: 120%;
+  display: block;
+}
+.megamenu-banner > a > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-text__image {
+  text-align: center;
+}
+.image-text__image h3 {
+  font-weight: 400;
+  color: white;
+}
+
+.image-text__image .title-banner {
+  color: #fff;
+  letter-spacing: 2px;
+  font-size: 40px;
+}
+
+.image-text__image .bwp-button {
+  text-decoration: none;
+  color: #fff;
+  letter-spacing: 1px;
+  padding: 15px 45px;
+  border: 2px solid #fff !important;
+  border-radius: 50px;
+  display: inline-block !important;
+}
+.image-text__img-bg {
+  filter: brightness(0.5);
+  min-height: 350px;
+}
+.header-logo {
+  margin-right: 30px;
+}
+.header-right {
+  margin-left: 30px;
+}
+.product-review .jdgm-widget.jdgm-widget .jdgm-prev-badge {
+  display: block !important;
+}
+.jdgm-prev-badge {
+  display: none !important;
+}
+div#shopify-section-template--24228394107249__17429321814a1c0a1d {
+  display: none !important;
+}
+.jdgm-rev-widg__body {
+  width: 80%;
+  margin: 0 auto !important;
+}
+.jdgm-row-actions {
+  width: 80%;
+  margin: 0 auto !important;
+}
+.payment-image__img {
+  max-width: 200px;
+}
+.collection-banner {
+  position: relative !important;
+  padding-top: 4.5%;
+  margin-bottom: 30px;
+}
+.collection-banner .collection-banner-img {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.buy-together-products .item-product-inner .image img,
+.product-single__main-media img,
+.product-media__wrapper img {
+  object-fit: contain;
+  background: transparent;
+}
+.product-card__image .preloading-img-product img {
+  object-fit: contain;
+  background: transparent;
+}
+.product-card
+  .product-card__image-wrapper.transform
+  .product-card__image
+  .preloading-img-product:first-child {
+  background: transparent;
+}
+@media (max-width: 1600px) {
+  .header-logo img {
+    max-width: 230px !important;
+  }
+}
+@media (max-width: 1550px) {
+  .main-menu__nav-item {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 1350px) {
+  .header-logo img {
+    max-width: 170px !important;
+  }
+  .main-menu__nav-item {
+    padding: 0 8px;
+  }
+  .jdgm-rev-widg__body,
+  .jdgm-row-actions {
+    width: 83%;
+  }
+  .jdgm-row-actions {
+    width: 83%;
+  }
+}
+@media (max-width: 1200px) {
+  .header-right {
+    margin-left: 0;
+  }
+  .header-logo {
+    margin-right: 0;
+  }
+}
+@media (max-width: 767px) {
+  .header-logo img {
+    max-width: 150px !important;
+  }
+  .jdgm-rev-widg__body,
+  .jdgm-row-actions {
+    width: 100% !important;
+  }
+  .jdgm-row-actions {
+    width: 100% !important;
+  }
+  .image-text__image h3 {
+    font-weight: 400;
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  .image-text__image .title-banner {
+    color: #fff;
+    letter-spacing: 2px;
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lookbook-instagram-slider .lookbook-card {
+    width: 100% !important;
+  }
+}

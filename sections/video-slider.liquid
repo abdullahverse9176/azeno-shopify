@@ -1,0 +1,320 @@
+<style>
+  .banner-video {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+  }
+
+  .banner-video video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+  .visually-hidden{
+    display: none
+  }
+
+  .banner-content {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+  }
+
+  .banner-content h3 {
+    font-size: 40px;
+    line-height: 35px;
+    font-weight: 500;
+    letter-spacing: 0px;
+    margin: 0px 0px 30px 0px;
+    text-align: center;
+    color: white;
+  }
+
+  .shop-btn {
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: 1.5px;
+    padding: 15px 45px;
+    border: 2px solid #fff !important;
+    border-radius: 50px;
+    display: inline-block !important;
+    background: transparent;
+    font-size: 16px;
+    transition: all .2s ease;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .shop-btn:hover {
+    background: white;
+    color: black;
+  }
+
+  @media screen and (max-width: 450px) {
+    .shop-btn {
+      padding: 10px 32px;
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .banner-content {
+      top: 80%;
+    }
+  }
+
+  /* Promo Scroll Image Section */
+  .promo-scroll-image {
+    position: relative;
+    margin-top: 100px;
+    display: none;
+    text-align: center;
+  }
+
+  .promo-scroll-image img {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+  }
+  .promo-scroll-image{
+    margin-top: 0 !important;
+  }
+  .promo-sale-button {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff4d4d;
+    color: white;
+    padding: 15px 35px;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+  }
+
+  .promo-sale-button:hover {
+    background: #e60000;
+  }
+     .modal-dialog {
+        max-width: 700px;
+    }
+     .modal-dialog {
+        max-width: 700px;
+    }
+  .modal-body {
+    padding: 0;
+}
+  .btn-close{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 999;
+    outline: none;
+    border: navajowhite;
+    background: transparent;
+  }
+/* new code   */
+
+
+  .custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .custom-modal-content {
+    background-color: white;
+    border-radius: 8px;
+    max-width: 700px;
+    width: 100%;
+    max-height: 90%;
+    text-align: center;
+    position: relative;
+  }
+
+  .custom-modal-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .custom-modal-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .custom-modal-button {
+    text-decoration: none;
+    background-color: #000;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
+
+  .custom-modal-button:hover {
+    background-color: #333;
+  }
+
+  @media (max-width: 600px) {
+    .custom-modal-content {
+      padding: 10px;
+    }
+
+    .custom-modal-button {
+      padding: 10px 20px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .promo-sale-button {
+      padding: 10px 25px;
+      font-size: 14px;
+    }
+  }
+</style>
+
+<div class="banner-video">
+   <video autoplay loop muted playsinline preload="auto">
+    <source src="https://cdn.shopify.com/videos/c/o/v/0feb613f5cfe48fd8f3b385957dae62e.mp4" type="video/mp4">
+    <source src="movie.ogg" type="video/ogg">
+    Your browser does not support the video tag.
+  </video> 
+  {% comment %} <div style="padding:56.25% 0 0 0;position:relative;">
+    <iframe 
+      src="https://player.vimeo.com/video/1214369536?autoplay=1&muted=1&background=1&loop=1&autopause=0&playsinline=1" 
+      frameborder="0"
+      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;"
+      title="Background Video"
+    ></iframe>
+  </div> {% endcomment %}
+
+  <div class="banner-content">
+    <a href="https://buywakeworks.com/collections/wakesurf" class="shop-btn">Shop Now</a>
+  </div>
+
+  <h2 class="visually-hidden">Buy Wake Works</h2>
+
+</div>
+
+<!-- Promo Scroll Image Section -->
+
+<!-- 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+      </div>
+      <div class="modal-body">
+       <div class="promo-scroll-image" id="promoScrollImage">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0896/7726/7313/files/liquid-force-sale.png?v=1747666592"
+            alt="Liquid Force Sale"
+          >
+          <a href="/collections/all" class="promo-sale-button">Shop Sale</a>
+        </div>
+      </div>
+   
+    </div>
+  </div>
+</div> -->
+
+<!-- <div id="customModal" class="custom-modal">
+  <div class="custom-modal-content">
+    <button class="custom-modal-close" id="closeModal">✕</button>
+    <img
+      src="https://cdn.shopify.com/s/files/1/0896/7726/7313/files/liquid-force-sale.png?v=1747666592"
+      alt="Liquid Force Sale"
+      class="custom-modal-image"
+    />
+    <a href="/collections/all" class="custom-modal-button">Shop Sale</a>
+  </div>
+</div> -->
+
+<!-- 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+      </div>
+      <div class="modal-body">
+       <div class="promo-scroll-image" id="promoScrollImage">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0896/7726/7313/files/liquid-force-sale.png?v=1747666592"
+            alt="Liquid Force Sale"
+          >
+          <a href="/collections/all" class="promo-sale-button">Shop Sale</a>
+        </div>
+      </div>
+     
+    </div>
+  </div>
+</div> -->
+
+<script>
+  window.addEventListener('scroll', function () {
+    const scrollImage = document.getElementById('promoScrollImage');
+    const scrollTrigger = 300; // Show after 300px scroll
+    if (window.scrollY > scrollTrigger) {
+      scrollImage.style.display = 'block';
+    } else {
+      scrollImage.style.display = 'none';
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Video Slider",
+  "settings": [
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "accept": ["youtube", "vimeo"],
+      "default": "https://www.youtube.com/watch?v=R61GFyIxGnQ&ab_channel=WakeWorks",
+      "label": "URL",
+      "info": "Video plays on the page."
+    },
+    {
+      "type": "url",
+      "id": "banner_btn_1",
+      "label": "Banner Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Slider"
+    }
+  ]
+}
+{% endschema %}
