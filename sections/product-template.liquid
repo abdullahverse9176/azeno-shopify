@@ -263,12 +263,8 @@
                           </div>
                         {%- endif -%}
 
-						<div>
-							<h1>Abdullah</h1>
-						</div>
-
                       {%- when 'shipping_policy' -%}
-                        {% comment %} <div
+                        <div
                           class="product-single__policies rte"
                           {% if block.settings.product_shipping_policy_margin != blank %}
                             style="margin:{{ block.settings.product_shipping_policy_margin }}"
@@ -280,7 +276,7 @@
                           {%- if shop.shipping_policy.body != blank -%}
                             {{ 'products.general.shipping_policy_html' | t: link: shop.shipping_policy.url }}
                           {%- endif -%}
-                        </div> {% endcomment %}
+                        </div>
 
 						
                       {%- when 'form_atc' -%}
