@@ -141,6 +141,16 @@
             "product_share_title": "Share"
           }
         },
+        "trust_bar_block": {
+          "type": "trust_bar",
+          "settings": {
+            "background_color": "#BF2B2B",
+            "trust_heading_color": "#F8F4F4",
+            "trust_description_color": "#FFF7F7",
+            "trust_heading": "",
+            "trust_description": "Your payment information is secure."
+          }
+        },
         "20c3a9e0-91de-4ae5-afdb-d78348eb3802": {
           "type": "estimated_delivery",
           "settings": {
@@ -276,16 +286,6 @@
             "tab_title": "Return",
             "tab_content": "<p>You can choose between a refund or a credit note on full priced items.</p>\n<ul>\n<li>Item(s) must be returned in their original condition and packaging: unworn, unwashed and with all tags attached.</li>\n<li>Earrings cannot be returned due to health and safety reasons.</li>\n<li>Return shipping methods and associated costs are the responsibility of the customer.</li>\n<li>Sale items can not be refunded for change of mind.</li>\n</ul>",
             "tab_metafields": ""
-          }
-        },
-        "trust_bar_block": {
-          "type": "trust_bar",
-          "settings": {
-            "background_color": "",
-            "trust_heading_color": "",
-            "trust_description_color": "",
-            "trust_heading": "",
-            "trust_description": "Your payment information is secure."
           }
         }
       },
