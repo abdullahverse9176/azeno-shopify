@@ -152,14 +152,8 @@
           }
         },
         "my_variants_block": {
-          "type": "trust_bar",
-          "settings": {
-            "background_color": "#BF2B2B",
-            "trust_heading_color": "#F8F4F4",
-            "trust_description_color": "#FFF7F7",
-            "trust_heading": "",
-            "trust_description": "Your payment information is secure."
-          }
+          "type": "variants_block",
+          "settings": {}
         },
         "20c3a9e0-91de-4ae5-afdb-d78348eb3802": {
           "type": "estimated_delivery",
@@ -313,6 +307,7 @@
         "61dc1536-4060-4a7b-8978-6b15781156e7",
         "b46e544a-3024-4b16-a177-ad395195c8cb",
         "trust_bar_block",
+        "my_variants_block",
         "20c3a9e0-91de-4ae5-afdb-d78348eb3802",
         "0edcb572-7ba9-4350-b207-f666123c2642",
         "38e369aa-e4b4-48f8-b4a2-ec2268e6b30c",
