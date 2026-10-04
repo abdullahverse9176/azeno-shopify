@@ -1,0 +1,45 @@
+.trust-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trust-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.trust-content h3 {
+  margin: 0 0 5px;
+  font-size: 16px;
+}
+
+.trust-content p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+@media (max-width: 749px) {
+  .trust-bar {
+    grid-template-columns: 1fr;
+  }
+}
