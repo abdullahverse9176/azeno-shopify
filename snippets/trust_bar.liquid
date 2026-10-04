@@ -1,29 +1,52 @@
-
 {{ 'trust_bar.css' | asset_url | stylesheet_tag }}
 
-<div class="trust-bar">
+{%- assign bg_color = block.settings.background_color -%}
+{%- assign heading_color = block.settings.trust_heading_color -%}
+{%- assign desc_color = block.settings.trust_description_color -%}
+
+<div class="trust-bar" style="{% if bg_color != blank %}background-color: {{ bg_color }};{% endif %}">
 
   <div class="trust-item">
     <div class="trust-icon">✓</div>
     <div class="trust-content">
-      <h3>Free Shipping</h3>
-      <p>On orders over $50</p>
+      <h3 style="{% if heading_color != blank %}color: {{ heading_color }};{% endif %}">
+        {%- if block.settings.trust_heading != blank -%}
+          {{ block.settings.trust_heading }}
+        {%- else -%}
+          Free Shipping
+        {%- endif -%}
+      </h3>
+      <p style="{% if desc_color != blank %}color: {{ desc_color }};{% endif %}">
+        {%- if block.settings.trust_description != blank -%}
+          {{ block.settings.trust_description }}
+        {%- else -%}
+          On orders over $50
+        {%- endif -%}
+      </p>
     </div>
   </div>
 
   <div class="trust-item">
     <div class="trust-icon">✓</div>
     <div class="trust-content">
-      <h3>Secure Payment</h3>
-      <p>100% secure checkout</p>
+      <h3 style="{% if heading_color != blank %}color: {{ heading_color }};{% endif %}">
+        Secure Payment
+      </h3>
+      <p style="{% if desc_color != blank %}color: {{ desc_color }};{% endif %}">
+        100% secure checkout
+      </p>
     </div>
   </div>
 
   <div class="trust-item">
     <div class="trust-icon">✓</div>
     <div class="trust-content">
-      <h3>Easy Returns</h3>
-      <p>30 day returns</p>
+      <h3 style="{% if heading_color != blank %}color: {{ heading_color }};{% endif %}">
+        Easy Returns
+      </h3>
+      <p style="{% if desc_color != blank %}color: {{ desc_color }};{% endif %}">
+        30 day returns
+      </p>
     </div>
   </div>
 
