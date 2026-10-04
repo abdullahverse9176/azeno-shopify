@@ -152,7 +152,7 @@
           }
         },
         "my_variants_block": {
-          "type": "variants_block",
+          "type": "my_variants",
           "settings": {}
         },
         "20c3a9e0-91de-4ae5-afdb-d78348eb3802": {
