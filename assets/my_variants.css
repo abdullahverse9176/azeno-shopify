@@ -1,0 +1,32 @@
+.variant-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.variant-option {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.variant-option label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.variant-option select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.variant-option select:focus {
+  outline: none;
+  border-color: #111;
+}
