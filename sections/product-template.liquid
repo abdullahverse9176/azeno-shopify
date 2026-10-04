@@ -297,33 +297,7 @@
                           {% endif %}
                         ></div>
 						
-						<div class="trust-bar">
-
-  <div class="trust-item">
-    <div class="trust-icon">✓</div>
-    <div class="trust-content">
-      <h3>Free Shipping</h3>
-      <p>On orders over $50</p>
-    </div>
-  </div>
-
-  <div class="trust-item">
-    <div class="trust-icon">✓</div>
-    <div class="trust-content">
-      <h3>Secure Payment</h3>
-      <p>100% secure checkout</p>
-    </div>
-  </div>
-
-  <div class="trust-item">
-    <div class="trust-icon">✓</div>
-    <div class="trust-content">
-      <h3>Easy Returns</h3>
-      <p>30 day returns</p>
-    </div>
-  </div>
-
-</div>
+						{% render 'trust_bar' %}
 
                       {%- when 'ask-share' -%}
                         <div
