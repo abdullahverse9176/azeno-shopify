@@ -151,7 +151,7 @@
             "trust_description": "Your payment information is secure."
           }
         },
-        "trust_bar_block": {
+        "my_variants_block": {
           "type": "trust_bar",
           "settings": {
             "background_color": "#BF2B2B",
