@@ -38,8 +38,10 @@
   <div class="container{% if full_width  %} container-full-image{% endif %}">
     <div
       class="product"
-      {% comment %} itemscope
-      itemtype="http://schema.org/Product" {% endcomment %}
+      {% comment %}
+        itemscope
+        itemtype="http://schema.org/Product"
+      {% endcomment %}
       data-section-id="{{ section.id }}"
       data-section-type="product-template"
       data-enable-history-state="true"
@@ -66,8 +68,6 @@
             >
           </div>
         {% endif %}
-
-    
 
         <div class="row">
           <div class="bwp-single-content{% if section.settings.show_sidebar %} {{ section.settings.position_sidebar }} col-xl-9 col-lg-12 col-md-12 col-12{% else %} col-12 col-lg-12 col-md-12 col-12{% endif %}">
@@ -102,7 +102,6 @@
                           {{ product.title }}
                         </h1>
 
-						
                       {%- when 'price' -%}
                         {%- if group_product != blank -%}
                           <div
@@ -146,9 +145,7 @@
                           </div>
                         {% endif %}
 
-
                       {%- when 'vendor' -%}
-
                         <div
                           class="product__vendor"
                           {% if block.settings.product_vendor_margin != blank %}
@@ -160,7 +157,7 @@
                             <a href="/collections/vendors?q={{ product.vendor }}">{{ product.vendor }}</a>
                           </div>
                         </div>
-						
+
                       {%- when 'inventory' -%}
                         <div
                           class="inventory-content"
@@ -211,7 +208,6 @@
                         {% endif %}
 
                         <!-- ibr code end -->
-						
 
                       {%- when 'product_real_time' -%}
                         {%- assign count = block.settings.product_real_time_count | split: '-' -%}
@@ -263,7 +259,6 @@
                             ></div>
                           </div>
                         {%- endif -%}
-						
 
                       {%- when 'shipping_policy' -%}
                         <div
@@ -296,8 +291,8 @@
                             style="margin:{{ block.settings.product_pick_up_margin }}"
                           {% endif %}
                         ></div>
-						
-						{% render 'trust_bar' %}
+
+                        {% render 'trust_bar' %}
 
                       {%- when 'ask-share' -%}
                         <div
@@ -343,7 +338,7 @@
                               </div>
                             </div>
                           {% endif %}
-						  
+
                           {% if block.settings.social_sharing_products %}
                             {% assign full_url = request.host | append: request.path %}
                             <div class="product_share">
@@ -377,7 +372,6 @@
                           {% endif %}
                         </div>
 
-						
                       {%- when 'estimated_delivery' -%}
                         {%- for variant in product.variants -%}
                           {% if variant.incoming %}
@@ -430,8 +424,12 @@
                                   <div class="content-right">
                                     <div class="product-thumb">
                                       <a href="{{ product.url }}">
-                                        {% include 'img-global' with image, image: product.featured_image, class: "featured-banner__img", effect: "fade-in" %}
-                                         <span class="visually-hidden">{{ product.title }}</span>
+                                        {% include 'img-global' with image,
+                                          image: product.featured_image,
+                                          class: 'featured-banner__img',
+                                          effect: 'fade-in'
+                                        %}
+                                        <span class="visually-hidden">{{ product.title }}</span>
                                       </a>
                                     </div>
                                   </div>
@@ -453,7 +451,6 @@
                           {%- for variant in product.variants -%}
                             {% assign number_variant = number_variant | plus: 1 %}
                           {%- endfor -%}
-
 
                           <form
                             method="post"
@@ -649,8 +646,12 @@
                         <div class="product">
                           <div class="image">
                             <a href="{{ product.url }}">
-                              {% include 'img-global' with image, image: product.featured_image, class: "img-fluid", effect: "fade-in" %}
-                               <span class="visually-hidden">{{ product.title }}</span>
+                              {% include 'img-global' with image,
+                                image: product.featured_image,
+                                class: 'img-fluid',
+                                effect: 'fade-in'
+                              %}
+                              <span class="visually-hidden">{{ product.title }}</span>
                             </a>
                           </div>
                           <div class="info">
@@ -716,39 +717,39 @@
 {
   "name": "Main Product",
   "settings": [
-	{
+    {
       "type": "color",
       "id": "bg_section",
       "label": "Background",
-	  "default": "#fff"
+      "default": "#fff"
     },
-	{
+    {
       "type": "text",
       "id": "padding_section",
       "label": "Padding",
-	  "default": "0px 0px 0px 0px",
-	  "info":"top right bottom left",
-	  "placeholder":"0px 0px 0px 0px"
+      "default": "0px 0px 0px 0px",
+      "info": "top right bottom left",
+      "placeholder": "0px 0px 0px 0px"
     },
-	{
+    {
       "type": "checkbox",
       "id": "product_button_wishlist",
       "label": "Show Button Wishlist",
       "default": true
     },
-	{
+    {
       "type": "checkbox",
       "id": "product_button_compare",
       "label": "Show Button Compare",
       "default": true
     },
-	{
+    {
       "type": "checkbox",
       "id": "show_sticky_cart",
       "label": "Enable sticky cart",
       "default": true
     },
-	{
+    {
       "type": "header",
       "content": "Media",
       "info": "Learn more about [media types](https://help.shopify.com/manual/products/product-media)"
@@ -767,29 +768,29 @@
           "value": "gird-mordern",
           "label": "Gird Mordern"
         },
-		{
+        {
           "value": "gird-two",
           "label": "Gird 2 Column"
         },
-		{
+        {
           "value": "gird-sticky",
           "label": "Gird sticky"
         },
-		{
+        {
           "value": "slider",
           "label": "Slider full-width"
         },
-		{
+        {
           "value": "lagre-gallery",
           "label": "Without Thumbnails"
         },
-		{
+        {
           "value": "thumbnails",
           "label": "Thumbnails"
         }
       ]
     },
-	{
+    {
       "type": "select",
       "id": "position_thumbnails",
       "label": "Position Thumbnails of Gallery layout Thumbnails",
@@ -803,38 +804,38 @@
           "value": "right",
           "label": "Right"
         },
-		{
+        {
           "value": "bottom",
           "label": "Bottom"
         }
       ]
     },
-	{
-	  "type": "range",
-	  "id": "thumbnail_count",
-	  "min": 1,
-	  "max": 6,
-	  "step": 1,
-	  "label": "Thumbnail Count",
-	  "default": 4
-	},
+    {
+      "type": "range",
+      "id": "thumbnail_count",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Thumbnail Count",
+      "default": 4
+    },
     {
       "type": "checkbox",
       "id": "enable_video_looping",
       "label": "Enable video looping",
       "default": false
     },
-	{
+    {
       "type": "header",
       "content": "Sidebar"
     },
-	{
+    {
       "type": "checkbox",
       "id": "show_sidebar",
       "label": "Show sidebar",
       "default": false
     },
-	{
+    {
       "type": "select",
       "id": "position_sidebar",
       "label": "Position Sidebar",
@@ -850,1132 +851,1128 @@
         }
       ]
     },
-	{
+    {
       "type": "text",
       "id": "heading_sidebar",
       "label": "Heading collection sidebar",
       "default": "Top rate products"
     },
-	{
+    {
       "type": "collection",
       "id": "collection_sidebar",
       "label": "Collection sidebar"
     },
-	{
+    {
       "type": "number",
       "id": "collection_limit",
       "label": "Collection Limit",
-	  "default": 4
+      "default": 4
     }
   ],
-	"blocks": [
-		{
-            "type": "@app"
-        },
-		{
-            "type": "rating",
-            "name": "Product rating",
-            "limit": 1,
-            "settings": [
-				{
-					"type": "paragraph",
-					"content": "To display a rating, add a product reviews app.\nGo to Theme settings -> Integrated apps -> Product reviews to choose the app which you are using."
-				}
-            ]
-        },
-		{
-            "type": "title",
-            "name": "Product title",
-            "limit": 1,
-			"settings": [
-				{
-					"type": "text",
-					"id": "product_title_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px",
-					"default":"0 0 10px"
-				},
-				{
-					"type": "number",
-					"id": "title_size",
-					"label": "Font size",
-					"info": "px",
-					"default":25
-				},
-				{
-					"type": "color",
-					"id": "title_color",
-					"label": "Color",
-					"default":"#000"
-				},
-				{
-					"type": "select",
-					"id": "title_transform",
-					"label": "Text transform",
-					"options": [
-						{
-							"value": "unset",
-							"label": "Default"
-						},
-						{
-							"value": "capitalize",
-							"label": "Capitalize"
-						},
-						{
-							"value": "lowercase",
-							"label": "Lowercase"
-						},
-						{
-							"value": "uppercase",
-							"label": "Uppercase"
-						}
-					],
-					"default":"uppercase"
-				}
-            ]
-        },
-		{
-            "type": "price",
-            "name": "Product price",
-            "limit": 1,
-			"settings": [
-				{
-					"type": "text",
-					"id": "product_price_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px",
-					"default":"10px 0 17px"
-				},
-				{
-					"type": "number",
-					"id": "price_size",
-					"label": "Font size",
-					"info": "px",
-					"default":25
-				},
-				{
-					"type": "color",
-					"id": "price_color",
-					"label": "Color",
-					"default":"#ed5d43"
-				},
-				{
-					"type": "color",
-					"id": "price_color_sale",
-					"label": "Color sale",
-					"default":"#ff0000"
-				}
-            ]
-        },
-		{
-            "type": "vendor",
-            "name": "Product vendor",
-            "limit": 1,
-			"settings": [
-				{
-					"type": "text",
-					"id": "product_vendor_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px"
-				}
-            ]
-        },
-		{
-            "type": "inventory",
-            "name": "Product inventory",
-            "limit": 1,
-			"settings": [
-				{
-					"type": "text",
-					"id": "product_inventory_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px",
-					"default":"0 0 15px"
-				},
-				{
-					"type": "number",
-					"id": "inventory_size",
-					"label": "Font size",
-					"info": "px",
-					"default":14
-				},
-				{
-					"type": "color",
-					"id": "inventory_color",
-					"label": "Color",
-					"default":"#108043"
-				},
-				{
-					"type": "color",
-					"id": "inventory_outstock_color",
-					"label": "Color outstock",
-					"default":"#e52828"
-				}
-            ]
-        },
-		{
-            "type": "product_count_sale",
-            "name": "Product count sale",
-            "limit": 1,
-			"settings": [
-				{
-					"type": "text",
-					"id": "product_count_sale_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px",
-					"default": "0 0 10px"
-				},
-				{
-					"type": "header",
-					"content": "Product count sale"
-				},
-				{
-					"type": "text",
-					"id": "product_sale_count",
-					"label": "Sale count",
-					"default": "30-40",
-					"info": "The number of sale will vary during this interval. Example: 30-40"
-				},
-				{
-					"type": "text",
-					"id": "product_sale_time",
-					"label": "Sale Time",
-					"default": "5-20",
-					"info": "The time of sale will vary during this interval. Example: 30-40"
-				},
-				{
-					"type": "text",
-					"id": "product_count_sale_text",
-					"label": "Product Sale text",
-					"default": "sold in last"
-				},
-				{
-					"type": "text",
-					"id": "product_count_sale_unit",
-					"label": "Product Sale Unit",
-					"default": "hours"
-				},
-				{
-					"type": "color",
-					"id": "count_sale_color",
-					"label": "Color",
-					"default":"#f11e1e"
-				}
-            ]
-        },
-		{
-            "type": "product_real_time",
-            "name": "Real time visitors",
-            "limit": 1,
-			"settings": [
-				{
-					"type": "text",
-					"id": "product_real_time_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px",
-					"default": "0 0 20px"
-				},
-				{
-					"type": "header",
-					"content": "Real time visitors"
-				},
-				{
-					"type": "text",
-					"id": "product_real_time_count",
-					"label": "Real time count",
-					"default": "30-40",
-					"info": "The number of viewers will vary during this interval. Example: 30-40"
-				},
-				{
-					"type": "text",
-					"id": "product_real_time_change",
-					"label": "Number change time",
-					"default": "5000"
-				},
-				{
-					"type": "text",
-					"id": "product_real_time_text",
-					"label": "Real time text",
-					"default": "people are viewing this right now"
-				},
-				{
-					"type": "color",
-					"id": "real_time_color",
-					"label": "Color",
-					"default":"#000"
-				}
-            ]
-        },
-		{
-            "type": "countdowns",
-            "name": "Product countdowns",
-            "limit": 1,
-			"settings": [
-				{
-					"type": "text",
-					"id": "product_countdowns_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px"
-				},
-				{
-					"type": "header",
-					"content": "Product countdowns"
-				},
-				{
-					"type": "text",
-					"id": "product_countdown_title",
-					"label": "Title CountDown",
-					"default": "Hurry up! Sale ends in :"
-				},
-					{
-					"type": "text",
-					"id": "product_countdown_day",
-					"label": "Text day",
-					"default": "d"
-				},
-				{
-					"type": "text",
-					"id": "product_countdown_hour",
-					"label": "Text hour",
-					"default": "h"
-				},
-				{
-					"type": "text",
-					"id": "product_countdown_min",
-					"label": "Text minutes",
-					"default": "m"
-				},
-				{
-					"type": "text",
-					"id": "product_countdown_sec",
-					"label": "Text second",
-					"default": "s"
-				}
-            ]
-        },
-		{
-            "type": "shipping_policy",
-            "name": "Product shipping policy",
-            "limit": 1,
-			"settings": [
-				{
-					"type": "text",
-					"id": "product_shipping_policy_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px"
-				}
-			]
-        },
-		{
-            "type": "form_atc",
-            "name": "Form Add to cart",
-            "limit": 1,
-			"settings": [
-				{
-					"type": "header",
-					"content": "Product options form"
-				},
-				{
-					"type": "checkbox",
-					"id": "product_available_enable",
-					"label": "Show left stock",
-					"default": true
-				},
-				{
-					"type": "select",
-					"id": "product_selector",
-					"label": "Picker type",
-					"options": [
-						{
-							"value": "radio",
-							"label": "Button"
-						},
-						{
-							"value": "checkbox",
-							"label": "Check box"
-						},
-						{
-							"value": "color-checkbox",
-							"label": "Color and Check box"
-						},
-						{
-							"value": "select",
-							"label": "Dropdown"
-						},
-						{
-							"value": "color-select",
-							"label": "Color and Dropdown"
-						}
-					]
-				},
-				{
-					"type": "header",
-					"content": "Total products sold"
-				},
-				{
-					"type": "number",
-					"id": "total_product_solid",
-					"label": "Count Total products sold",
-					"default": 80,
-					"info":"used to make the progress bar left in stock"
-				},
-				{
-					"type": "header",
-					"content": "Product quantity form"
-				},
-				{
-					"type": "checkbox",
-					"id": "quantity_enabled",
-					"label": "Show quantity picker",
-					"default": true
-				},
-				{
-					"type": "select",
-					"id": "quantity_selector",
-					"label": "Quantity type",
-					"options": [
-						{
-						  "value": "text",
-						  "label": "Text"
-						},
-						{
-						  "value": "select",
-						  "label": "Dropdown"
-						}
-					]
-				},
-				{
-					"type": "header",
-					"content": "Add to cart button"
-				},
-				{
-					"type": "color",
-					"id": "atc_button_color",
-					"label": "Add to cart button background",
-					"default": "#000"
-				},
-				{
-					"type": "header",
-					"content": "Buy now button"
-				},
-				{
-					"type": "checkbox",
-					"id": "enable_payment_button",
-					"label": "Show dynamic checkout button",
-					"info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
-					"default": true
-				},
-				{
-					"type": "color",
-					"id": "payment_button_color",
-					"label": "Checkout button background",
-					"default": "#fff"
-				},
-				{
-					"type": "color",
-					"id": "payment_text_color",
-					"label": "Checkout button color",
-					"default": "#ed5d43"
-				},
-				{
-					"type": "header",
-					"content": "Back in stock button"
-				},
-				{
-					"type": "checkbox",
-					"id": "show_back_in_stock",
-					"label": "Show Back in stock",
-					"default": true
-				},
-				{
-					"type": "text",
-					"id": "back_in_stock_title",
-					"label": "Back in stock label",
-					"default": "Notify me when available"
-				},
-				{
-					"type": "text",
-					"id": "back_in_stock_title_form",
-					"label": "Back in stock title",
-					"default": "Back in stock alert"
-				},
-				{
-					"type": "textarea",
-					"id": "back_in_stock_content",
-					"label": "Back in stock content",
-					"default": "We will send you a notification as soon as this product is available again."
-				},
-				{
-					"type": "color",
-					"id": "bis_color",
-					"label": "Button background",
-					"default": "#fff"
-				},
-				{
-					"type": "color",
-					"id": "bis_text_color",
-					"label": "Button color",
-					"default": "#000"
-				},
-				{
-					"type": "color",
-					"id": "bis_hover_color",
-					"label": "Background hover",
-					"default": "#ed5d43"
-				},
-				{
-					"type": "color",
-					"id": "bis_text_hover_color",
-					"label": "Button color hover",
-					"default": "#fff"
-				}
-            ]
-        },
-		{
-            "type": "pick_up",
-            "name": "Product pick up",
-            "limit": 1,
-			"settings": [
-				{
-					"type": "paragraph",
-					"content": "See instructions for Product pick up [Document](https:\/\/info.bingomore.com/shopify\/document\/wpbingo\/product_pages.html#section4)"
-				},
-				{
-					"type": "text",
-					"id": "product_pick_up_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px"
-				}
-			]
-        },
-		{
-            "type": "ask-share",
-            "name": "Form ask and share",
-            "limit": 1,
-			"settings": [
-				{
-					"type": "text",
-					"id": "product_ask-share_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px"
-				},
-				{
-				  "type": "header",
-				  "content": "Ask a question"
-				},
-				{
-				  "type": "checkbox",
-				  "id": "social_ask_a_question",
-				  "label": "Enable Ask a question",
-				  "default": true
-				},
-				{
-				  "type": "text",
-				  "id": "ask_a_question_title",
-				  "label": "Heading",
-				  "default": "Ask a question"
-				},
-				{
-				  "type": "header",
-				  "content": "Delivery & Return"
-				},
-				{
-				  "type": "checkbox",
-				  "id": "delivery_return",
-				  "label": "Show Delivery & Return",
-				  "default": true
-				},
-				{
-				  "type": "text",
-				  "id": "delivery_return_title",
-				  "label": "Heading",
-				  "default": "Delivery & Return"
-				},
-				{
-				  "type": "text",
-				  "id": "delivery_return_heading",
-				  "label": "Title Content",
-				  "default": "Shipping info"
-				},
-				{
-				  "type": "html",
-				  "id": "delivery_return_content",
-				  "label": "Content"
-				},
-				{
-				  "type": "header",
-				  "content": "Share"
-				},
-				{
-				  "type": "checkbox",
-				  "id": "social_sharing_products",
-				  "label": "Enable product sharing",
-				  "default": true
-				},
-				{
-				  "type": "text",
-				  "id": "product_share_title",
-				  "label": "Heading",
-				  "default": "Share"
-				}
-            ]
-        },
-		{
-            "type": "estimated_delivery",
-            "name": "Estimated delivery",
-            "limit": 1,
-			"settings": [
-				{
-					"type": "paragraph",
-					"content": "See instructions for Estimated delivery [Document](https:\/\/info.bingomore.com/shopify\/document\/wpbingo\/product_pages.html#section3)"
-				},
-				{
-					"type": "text",
-					"id": "product_estimated_delivery_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px"
-				},
-				{
-					"type": "text",
-					"id": "estimated_delivery_title",
-					"label": "Estimated delivery title",
-					"default": "DELIVERY:"
-				},
-				{
-					"type": "number",
-					"id": "estimated_delivery_day",
-					"label": "Estimated delivery days",
-					"default": 5
-				},
-				{
-					"type": "number",
-					"id": "estimated_delivery_day_preorder",
-					"label": "Estimated delivery days for product pre order",
-					"default": 10
-				}
-			]
-
-        },
-		{
-			"type": "buy_with",
-			"name": "buy it with",
-			"limit": 1,
-			"settings": [
-				{
-					"type": "paragraph",
-					"content": "See instructions for buy with it [Document](https:\/\/info.bingomore.com/shopify\/document\/wpbingo\/product_pages.html#section1)"
-				},
-				{
-					"type": "text",
-					"id": "product_buy_with_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px"
-				},
-				{
-					"type": "text",
-					"id": "buy_it_with_title",
-					"label": "Title",
-					"default": "BUY IT WITH"
-				},
-				{
-					"type": "text",
-					"id": "buy_it_with_button",
-					"label": "Button",
-					"default": "VIEW PRODUCT"
-				}
-			]
-		},
-		{
-			"type": "buy_more",
-			"name": "Buy more",
-			"limit": 1,
-			"settings": [
-				{
-					"type": "paragraph",
-					"content": "See instructions for buy more [Document](https:\/\/info.bingomore.com/shopify\/document\/wpbingo\/product_pages.html#section2)"
-				},
-				{
-					"type": "text",
-					"id": "product_buy_more_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px"
-				},
-				{
-					"type": "color",
-					"id": "product_buy_more_color",
-					"label": "Background color",
-					"default":"#f6f6f6"
-				},
-				{
-				  "type": "text",
-				  "id": "buy_more_title",
-				  "label": "Buy more title",
-				  "default": "BUY MORE SAVE MORE!"
-				},
-				{
-				  "type": "collection",
-				  "id": "buy_more_collection",
-				  "label": "List Product have discounts"
-				},
-				{
-				  "type": "textarea",
-				  "id": "buy_more_content",
-				  "label": "Content discount",
-				  "default": "5 item(s) get 10% OFF"
-				},
-				{
-				  "type": "number",
-				  "id": "buy_more_quatily",
-				  "label": "number of products to get a discount",
-				  "default": 5
-				}
-			]
-		},
-		{
-			"type": "trust_barget",
-			"name": "Trust Barget",
-			"limit": 1,
-			"settings": [
-				{
-					"type": "text",
-					"id": "product_trust_barget_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px"
-				},
-				{
-					"type": "color",
-					"id": "trust_barget_bg",
-					"label": "Background",
-					"default": "#f8f5f4"
-				},
-				{
-					"type": "text",
-					"id": "trust_barget_title",
-					"label": "Heading",
-					"default": "Guarantee safe & secure checkout"
-				},
-				{
-					"type": "image_picker",
-					"id": "image",
-					"label": "Image"
-				}
-			]
-		},
-		{
-			"type": "buy_together",
-			"name": "Bought Together",
-			"limit": 1,
-			"settings": [
-				{
-					"type": "text",
-					"id": "product_buy_together_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px"
-				},
-				{
-				  "type": "text",
-				  "id": "buy_together_title",
-				  "label": "Heading",
-				  "default": "Frequently Bought Together"
-				}
-			]
-		},
-		{
-			"type": "product_sku",
-			"name": "Product sku",
-			"limit": 1
-		},
-		{
-			"type": "product_type",
-			"name": "Product type",
-			"limit": 1
-		},
-		{
-			"type": "product_collection",
-			"name": "Product collection",
-			"limit": 1,
-			"settings": [
-				{
-					"type": "text",
-					"id": "collection_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px",
-					"default":"0 0 6px"
-				},
-				{
-					"type": "number",
-					"id": "collection_size",
-					"label": "Font size",
-					"info": "px",
-					"default":14
-				},
-				{
-					"type": "color",
-					"id": "collection_color",
-					"label": "Color",
-					"default":"#999999"
-				},
-				{
-					"type": "color",
-					"id": "collection_color_hover",
-					"label": "Color hover",
-					"default":"#ed5d43"
-				},
-				{
-					"type": "select",
-					"id": "collection_transform",
-					"label": "Text transform",
-					"options": [
-						{
-							"value": "unset",
-							"label": "Default"
-						},
-						{
-							"value": "capitalize",
-							"label": "Capitalize"
-						},
-						{
-							"value": "lowercase",
-							"label": "Lowercase"
-						},
-						{
-							"value": "uppercase",
-							"label": "Uppercase"
-						}
-					],
-					"default":"uppercase"
-				}
-			]
-		},
-		{
-			"type": "short_description",
-			"name": "Short description",
-			"limit": 1,
-			"settings": [
-				{
-					"type": "text",
-					"id": "description_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px",
-					"default":"0 0 20px"
-				},
-				{
-					"type": "number",
-					"id": "description_size",
-					"label": "Font size",
-					"info": "px",
-					"default":14
-				},
-				{
-					"type": "color",
-					"id": "description_color",
-					"label": "Color",
-					"default":"#666"
-				}
-			]
-		},
-		{
-			"type": "product_tags",
-			"name": "Product tags",
-			"limit": 1,
-			"settings": [
-				{
-				  "type": "text",
-				  "id": "product_tags_title",
-				  "label": "Heading",
-				  "default": "Tags:"
-				},
-				{
-				  "type": "range",
-				  "id": "product_tags_limit",
-				  "min": 2,
-				  "max": 10,
-				  "step": 1,
-				  "unit": "pcs",
-				  "label": "Limit",
-				  "default": 6
-				}
-			]
-		},
-		{
-			"type": "product_tab",
-			"name": "Product tab",
-			"settings": [
-				{
-					"type": "text",
-					"id": "product_product_tab_margin",
-					"label": "Margin",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px"
-				},
-				{
-					"type": "select",
-					"id": "product_tab_selector",
-					"label": "Product tab type",
-					"options": [
-						{
-						  "value": "description",
-						  "label": "Description"
-						},
-						{
-						  "value": "review",
-						  "label": "Review"
-						},
-						{
-						  "value": "custom",
-						  "label": "Custom"
-						},
-						{
-						  "value": "metafields",
-						  "label": "Metafields"
-						}
-					]
-				},
-				{
-					"type": "text",
-					"id": "tab_title",
-					"label": "Tab Title"
-				},
-				{
-					"type": "textarea",
-					"id": "tab_content",
-					"label": "Tab Content.Use only when selecting the custom tab"
-				},
-				{
-					"type": "text",
-					"id": "tab_metafields",
-					"label": "Tab metafields.Use only when selecting the metafields tab"
-				}
-			]
-		},
-		{
-			"type": "policy",
-			"name": "Policy Sidebar",
-			"settings": [
-				{
-					"type": "text",
-					"id": "product_policy_margin",
-					"label": "Margin",
-					"default": "0px",
-					"info": "Example(top left bottom right): 15px 15px 15px 15px"
-				},
-				{
-					"type": "text",
-					"id": "border_policy_width",
-					"label": "Border width",
-					"default": "1px 1px 1px 1px",
-					"info": "Example(top left bottom right): 1px 1px 1px 1px"
-				},
-				{
-					"type": "color",
-					"id": "border_policy_color",
-					"label": "Border color",
-					"default": "#e9e9e9"
-				},
-				{
-					"type": "text",
-					"id": "padding_policy",
-					"label": "Padding",
-					"default": "25px 20px"
-				},
-				{
-					"type": "select",
-					"id": "type_image_policy",
-					"label": "Image type",
-					"options": [
-						{
-						  "value": "image",
-						  "label": "Image"
-						},
-						{
-						  "value": "svg",
-						  "label": "SVG"
-						}
-					]
-				},
-				{
-					"type": "image_picker",
-					"id": "img_policy",
-					"label": "Image policy"
-				},
-				{
-					"type": "html",
-					"id": "svg_policy",
-					"label": "SVG policy"
-				},
-				{
-					"type": "text",
-					"id": "title_policy",
-					"label": "Title policy"
-				},
-				{
-					"type": "text",
-					"id": "desc_policy",
-					"label": "Description policy"
-				}
-			]
-		},
-		{
-			"type": "border",
-			"name": "Border",
-			"settings": [
-				{
-					"type": "color",
-					"id": "border_color",
-					"label": "Border color"
-				},
-				{
-					"type": "number",
-					"id": "border_height",
-					"label": "Border height"
-				},
-				{
-					"type": "text",
-					"id": "border_space",
-					"label": "Border space",
-					"default": "15px 0"
-				}
-			]
-		},
-		{
-  "type": "trust_bar",
-  "name": "Trust Bar",
-  "settings": [
+  "blocks": [
     {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color"
+      "type": "@app"
     },
     {
-      "type": "color",
-      "id": "trust_heading_color",
-      "label": "Heading Color"
+      "type": "rating",
+      "name": "Product rating",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "To display a rating, add a product reviews app.\nGo to Theme settings -> Integrated apps -> Product reviews to choose the app which you are using."
+        }
+      ]
     },
     {
-      "type": "color",
-      "id": "trust_description_color",
-      "label": "Description Color"
+      "type": "title",
+      "name": "Product title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_title_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px",
+          "default": "0 0 10px"
+        },
+        {
+          "type": "number",
+          "id": "title_size",
+          "label": "Font size",
+          "info": "px",
+          "default": 25
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Color",
+          "default": "#000"
+        },
+        {
+          "type": "select",
+          "id": "title_transform",
+          "label": "Text transform",
+          "options": [
+            {
+              "value": "unset",
+              "label": "Default"
+            },
+            {
+              "value": "capitalize",
+              "label": "Capitalize"
+            },
+            {
+              "value": "lowercase",
+              "label": "Lowercase"
+            },
+            {
+              "value": "uppercase",
+              "label": "Uppercase"
+            }
+          ],
+          "default": "uppercase"
+        }
+      ]
+    },
+    {
+      "type": "price",
+      "name": "Product price",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_price_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px",
+          "default": "10px 0 17px"
+        },
+        {
+          "type": "number",
+          "id": "price_size",
+          "label": "Font size",
+          "info": "px",
+          "default": 25
+        },
+        {
+          "type": "color",
+          "id": "price_color",
+          "label": "Color",
+          "default": "#ed5d43"
+        },
+        {
+          "type": "color",
+          "id": "price_color_sale",
+          "label": "Color sale",
+          "default": "#ff0000"
+        }
+      ]
+    },
+    {
+      "type": "vendor",
+      "name": "Product vendor",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_vendor_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px"
+        }
+      ]
+    },
+    {
+      "type": "inventory",
+      "name": "Product inventory",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_inventory_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px",
+          "default": "0 0 15px"
+        },
+        {
+          "type": "number",
+          "id": "inventory_size",
+          "label": "Font size",
+          "info": "px",
+          "default": 14
+        },
+        {
+          "type": "color",
+          "id": "inventory_color",
+          "label": "Color",
+          "default": "#108043"
+        },
+        {
+          "type": "color",
+          "id": "inventory_outstock_color",
+          "label": "Color outstock",
+          "default": "#e52828"
+        }
+      ]
+    },
+    {
+      "type": "product_count_sale",
+      "name": "Product count sale",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_count_sale_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px",
+          "default": "0 0 10px"
+        },
+        {
+          "type": "header",
+          "content": "Product count sale"
+        },
+        {
+          "type": "text",
+          "id": "product_sale_count",
+          "label": "Sale count",
+          "default": "30-40",
+          "info": "The number of sale will vary during this interval. Example: 30-40"
+        },
+        {
+          "type": "text",
+          "id": "product_sale_time",
+          "label": "Sale Time",
+          "default": "5-20",
+          "info": "The time of sale will vary during this interval. Example: 30-40"
+        },
+        {
+          "type": "text",
+          "id": "product_count_sale_text",
+          "label": "Product Sale text",
+          "default": "sold in last"
+        },
+        {
+          "type": "text",
+          "id": "product_count_sale_unit",
+          "label": "Product Sale Unit",
+          "default": "hours"
+        },
+        {
+          "type": "color",
+          "id": "count_sale_color",
+          "label": "Color",
+          "default": "#f11e1e"
+        }
+      ]
+    },
+    {
+      "type": "product_real_time",
+      "name": "Real time visitors",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_real_time_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px",
+          "default": "0 0 20px"
+        },
+        {
+          "type": "header",
+          "content": "Real time visitors"
+        },
+        {
+          "type": "text",
+          "id": "product_real_time_count",
+          "label": "Real time count",
+          "default": "30-40",
+          "info": "The number of viewers will vary during this interval. Example: 30-40"
+        },
+        {
+          "type": "text",
+          "id": "product_real_time_change",
+          "label": "Number change time",
+          "default": "5000"
+        },
+        {
+          "type": "text",
+          "id": "product_real_time_text",
+          "label": "Real time text",
+          "default": "people are viewing this right now"
+        },
+        {
+          "type": "color",
+          "id": "real_time_color",
+          "label": "Color",
+          "default": "#000"
+        }
+      ]
+    },
+    {
+      "type": "countdowns",
+      "name": "Product countdowns",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_countdowns_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px"
+        },
+        {
+          "type": "header",
+          "content": "Product countdowns"
+        },
+        {
+          "type": "text",
+          "id": "product_countdown_title",
+          "label": "Title CountDown",
+          "default": "Hurry up! Sale ends in :"
+        },
+        {
+          "type": "text",
+          "id": "product_countdown_day",
+          "label": "Text day",
+          "default": "d"
+        },
+        {
+          "type": "text",
+          "id": "product_countdown_hour",
+          "label": "Text hour",
+          "default": "h"
+        },
+        {
+          "type": "text",
+          "id": "product_countdown_min",
+          "label": "Text minutes",
+          "default": "m"
+        },
+        {
+          "type": "text",
+          "id": "product_countdown_sec",
+          "label": "Text second",
+          "default": "s"
+        }
+      ]
+    },
+    {
+      "type": "shipping_policy",
+      "name": "Product shipping policy",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_shipping_policy_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px"
+        }
+      ]
+    },
+    {
+      "type": "form_atc",
+      "name": "Form Add to cart",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Product options form"
+        },
+        {
+          "type": "checkbox",
+          "id": "product_available_enable",
+          "label": "Show left stock",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "product_selector",
+          "label": "Picker type",
+          "options": [
+            {
+              "value": "radio",
+              "label": "Button"
+            },
+            {
+              "value": "checkbox",
+              "label": "Check box"
+            },
+            {
+              "value": "color-checkbox",
+              "label": "Color and Check box"
+            },
+            {
+              "value": "select",
+              "label": "Dropdown"
+            },
+            {
+              "value": "color-select",
+              "label": "Color and Dropdown"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Total products sold"
+        },
+        {
+          "type": "number",
+          "id": "total_product_solid",
+          "label": "Count Total products sold",
+          "default": 80,
+          "info": "used to make the progress bar left in stock"
+        },
+        {
+          "type": "header",
+          "content": "Product quantity form"
+        },
+        {
+          "type": "checkbox",
+          "id": "quantity_enabled",
+          "label": "Show quantity picker",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "quantity_selector",
+          "label": "Quantity type",
+          "options": [
+            {
+              "value": "text",
+              "label": "Text"
+            },
+            {
+              "value": "select",
+              "label": "Dropdown"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Add to cart button"
+        },
+        {
+          "type": "color",
+          "id": "atc_button_color",
+          "label": "Add to cart button background",
+          "default": "#000"
+        },
+        {
+          "type": "header",
+          "content": "Buy now button"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_payment_button",
+          "label": "Show dynamic checkout button",
+          "info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "payment_button_color",
+          "label": "Checkout button background",
+          "default": "#fff"
+        },
+        {
+          "type": "color",
+          "id": "payment_text_color",
+          "label": "Checkout button color",
+          "default": "#ed5d43"
+        },
+        {
+          "type": "header",
+          "content": "Back in stock button"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_back_in_stock",
+          "label": "Show Back in stock",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "back_in_stock_title",
+          "label": "Back in stock label",
+          "default": "Notify me when available"
+        },
+        {
+          "type": "text",
+          "id": "back_in_stock_title_form",
+          "label": "Back in stock title",
+          "default": "Back in stock alert"
+        },
+        {
+          "type": "textarea",
+          "id": "back_in_stock_content",
+          "label": "Back in stock content",
+          "default": "We will send you a notification as soon as this product is available again."
+        },
+        {
+          "type": "color",
+          "id": "bis_color",
+          "label": "Button background",
+          "default": "#fff"
+        },
+        {
+          "type": "color",
+          "id": "bis_text_color",
+          "label": "Button color",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "bis_hover_color",
+          "label": "Background hover",
+          "default": "#ed5d43"
+        },
+        {
+          "type": "color",
+          "id": "bis_text_hover_color",
+          "label": "Button color hover",
+          "default": "#fff"
+        }
+      ]
+    },
+    {
+      "type": "pick_up",
+      "name": "Product pick up",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "See instructions for Product pick up [Document](https:\/\/info.bingomore.com/shopify\/document\/wpbingo\/product_pages.html#section4)"
+        },
+        {
+          "type": "text",
+          "id": "product_pick_up_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px"
+        }
+      ]
+    },
+    {
+      "type": "ask-share",
+      "name": "Form ask and share",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_ask-share_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px"
+        },
+        {
+          "type": "header",
+          "content": "Ask a question"
+        },
+        {
+          "type": "checkbox",
+          "id": "social_ask_a_question",
+          "label": "Enable Ask a question",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "ask_a_question_title",
+          "label": "Heading",
+          "default": "Ask a question"
+        },
+        {
+          "type": "header",
+          "content": "Delivery & Return"
+        },
+        {
+          "type": "checkbox",
+          "id": "delivery_return",
+          "label": "Show Delivery & Return",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "delivery_return_title",
+          "label": "Heading",
+          "default": "Delivery & Return"
+        },
+        {
+          "type": "text",
+          "id": "delivery_return_heading",
+          "label": "Title Content",
+          "default": "Shipping info"
+        },
+        {
+          "type": "html",
+          "id": "delivery_return_content",
+          "label": "Content"
+        },
+        {
+          "type": "header",
+          "content": "Share"
+        },
+        {
+          "type": "checkbox",
+          "id": "social_sharing_products",
+          "label": "Enable product sharing",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "product_share_title",
+          "label": "Heading",
+          "default": "Share"
+        }
+      ]
+    },
+    {
+      "type": "estimated_delivery",
+      "name": "Estimated delivery",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "See instructions for Estimated delivery [Document](https:\/\/info.bingomore.com/shopify\/document\/wpbingo\/product_pages.html#section3)"
+        },
+        {
+          "type": "text",
+          "id": "product_estimated_delivery_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px"
+        },
+        {
+          "type": "text",
+          "id": "estimated_delivery_title",
+          "label": "Estimated delivery title",
+          "default": "DELIVERY:"
+        },
+        {
+          "type": "number",
+          "id": "estimated_delivery_day",
+          "label": "Estimated delivery days",
+          "default": 5
+        },
+        {
+          "type": "number",
+          "id": "estimated_delivery_day_preorder",
+          "label": "Estimated delivery days for product pre order",
+          "default": 10
+        }
+      ]
+    },
+    {
+      "type": "buy_with",
+      "name": "buy it with",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "See instructions for buy with it [Document](https:\/\/info.bingomore.com/shopify\/document\/wpbingo\/product_pages.html#section1)"
+        },
+        {
+          "type": "text",
+          "id": "product_buy_with_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px"
+        },
+        {
+          "type": "text",
+          "id": "buy_it_with_title",
+          "label": "Title",
+          "default": "BUY IT WITH"
+        },
+        {
+          "type": "text",
+          "id": "buy_it_with_button",
+          "label": "Button",
+          "default": "VIEW PRODUCT"
+        }
+      ]
+    },
+    {
+      "type": "buy_more",
+      "name": "Buy more",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "See instructions for buy more [Document](https:\/\/info.bingomore.com/shopify\/document\/wpbingo\/product_pages.html#section2)"
+        },
+        {
+          "type": "text",
+          "id": "product_buy_more_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px"
+        },
+        {
+          "type": "color",
+          "id": "product_buy_more_color",
+          "label": "Background color",
+          "default": "#f6f6f6"
+        },
+        {
+          "type": "text",
+          "id": "buy_more_title",
+          "label": "Buy more title",
+          "default": "BUY MORE SAVE MORE!"
+        },
+        {
+          "type": "collection",
+          "id": "buy_more_collection",
+          "label": "List Product have discounts"
+        },
+        {
+          "type": "textarea",
+          "id": "buy_more_content",
+          "label": "Content discount",
+          "default": "5 item(s) get 10% OFF"
+        },
+        {
+          "type": "number",
+          "id": "buy_more_quatily",
+          "label": "number of products to get a discount",
+          "default": 5
+        }
+      ]
+    },
+    {
+      "type": "trust_barget",
+      "name": "Trust Barget",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_trust_barget_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px"
+        },
+        {
+          "type": "color",
+          "id": "trust_barget_bg",
+          "label": "Background",
+          "default": "#f8f5f4"
+        },
+        {
+          "type": "text",
+          "id": "trust_barget_title",
+          "label": "Heading",
+          "default": "Guarantee safe & secure checkout"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "buy_together",
+      "name": "Bought Together",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_buy_together_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px"
+        },
+        {
+          "type": "text",
+          "id": "buy_together_title",
+          "label": "Heading",
+          "default": "Frequently Bought Together"
+        }
+      ]
+    },
+    {
+      "type": "product_sku",
+      "name": "Product sku",
+      "limit": 1
+    },
+    {
+      "type": "product_type",
+      "name": "Product type",
+      "limit": 1
+    },
+    {
+      "type": "product_collection",
+      "name": "Product collection",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "collection_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px",
+          "default": "0 0 6px"
+        },
+        {
+          "type": "number",
+          "id": "collection_size",
+          "label": "Font size",
+          "info": "px",
+          "default": 14
+        },
+        {
+          "type": "color",
+          "id": "collection_color",
+          "label": "Color",
+          "default": "#999999"
+        },
+        {
+          "type": "color",
+          "id": "collection_color_hover",
+          "label": "Color hover",
+          "default": "#ed5d43"
+        },
+        {
+          "type": "select",
+          "id": "collection_transform",
+          "label": "Text transform",
+          "options": [
+            {
+              "value": "unset",
+              "label": "Default"
+            },
+            {
+              "value": "capitalize",
+              "label": "Capitalize"
+            },
+            {
+              "value": "lowercase",
+              "label": "Lowercase"
+            },
+            {
+              "value": "uppercase",
+              "label": "Uppercase"
+            }
+          ],
+          "default": "uppercase"
+        }
+      ]
+    },
+    {
+      "type": "short_description",
+      "name": "Short description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "description_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px",
+          "default": "0 0 20px"
+        },
+        {
+          "type": "number",
+          "id": "description_size",
+          "label": "Font size",
+          "info": "px",
+          "default": 14
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Color",
+          "default": "#666"
+        }
+      ]
+    },
+    {
+      "type": "product_tags",
+      "name": "Product tags",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_tags_title",
+          "label": "Heading",
+          "default": "Tags:"
+        },
+        {
+          "type": "range",
+          "id": "product_tags_limit",
+          "min": 2,
+          "max": 10,
+          "step": 1,
+          "unit": "pcs",
+          "label": "Limit",
+          "default": 6
+        }
+      ]
+    },
+    {
+      "type": "product_tab",
+      "name": "Product tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_product_tab_margin",
+          "label": "Margin",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px"
+        },
+        {
+          "type": "select",
+          "id": "product_tab_selector",
+          "label": "Product tab type",
+          "options": [
+            {
+              "value": "description",
+              "label": "Description"
+            },
+            {
+              "value": "review",
+              "label": "Review"
+            },
+            {
+              "value": "custom",
+              "label": "Custom"
+            },
+            {
+              "value": "metafields",
+              "label": "Metafields"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title"
+        },
+        {
+          "type": "textarea",
+          "id": "tab_content",
+          "label": "Tab Content.Use only when selecting the custom tab"
+        },
+        {
+          "type": "text",
+          "id": "tab_metafields",
+          "label": "Tab metafields.Use only when selecting the metafields tab"
+        }
+      ]
+    },
+    {
+      "type": "policy",
+      "name": "Policy Sidebar",
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_policy_margin",
+          "label": "Margin",
+          "default": "0px",
+          "info": "Example(top left bottom right): 15px 15px 15px 15px"
+        },
+        {
+          "type": "text",
+          "id": "border_policy_width",
+          "label": "Border width",
+          "default": "1px 1px 1px 1px",
+          "info": "Example(top left bottom right): 1px 1px 1px 1px"
+        },
+        {
+          "type": "color",
+          "id": "border_policy_color",
+          "label": "Border color",
+          "default": "#e9e9e9"
+        },
+        {
+          "type": "text",
+          "id": "padding_policy",
+          "label": "Padding",
+          "default": "25px 20px"
+        },
+        {
+          "type": "select",
+          "id": "type_image_policy",
+          "label": "Image type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "svg",
+              "label": "SVG"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "img_policy",
+          "label": "Image policy"
+        },
+        {
+          "type": "html",
+          "id": "svg_policy",
+          "label": "SVG policy"
+        },
+        {
+          "type": "text",
+          "id": "title_policy",
+          "label": "Title policy"
+        },
+        {
+          "type": "text",
+          "id": "desc_policy",
+          "label": "Description policy"
+        }
+      ]
+    },
+    {
+      "type": "border",
+      "name": "Border",
+      "settings": [
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border color"
+        },
+        {
+          "type": "number",
+          "id": "border_height",
+          "label": "Border height"
+        },
+        {
+          "type": "text",
+          "id": "border_space",
+          "label": "Border space",
+          "default": "15px 0"
+        }
+      ]
+    },
+    {
+      "type": "trust_bar",
+      "name": "Trust Bar",
+      "settings": [
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Color"
+        },
+        {
+          "type": "color",
+          "id": "trust_heading_color",
+          "label": "Heading Color"
+        },
+        {
+          "type": "color",
+          "id": "trust_description_color",
+          "label": "Description Color"
+        }
+      ]
+    }
+  ],
+  "templates": ["product"],
+  "presets": [
+    {
+      "name": "Main Product",
+      "blocks": [
+        {
+          "type": "rating"
+        },
+        {
+          "type": "title"
+        },
+        {
+          "type": "price"
+        },
+        {
+          "type": "vendor"
+        },
+        {
+          "type": "inventory"
+        },
+        {
+          "type": "product_count_sale"
+        },
+        {
+          "type": "product_real_time"
+        },
+        {
+          "type": "countdowns"
+        },
+        {
+          "type": "shipping_policy"
+        },
+        {
+          "type": "pick_up"
+        },
+        {
+          "type": "form_atc"
+        },
+        {
+          "type": "ask-share"
+        },
+        {
+          "type": "estimated_delivery"
+        },
+        {
+          "type": "buy_with"
+        },
+        {
+          "type": "buy_more"
+        },
+        {
+          "type": "trust_barget"
+        }
+      ]
     }
   ]
-}
-		
-	],
-	"templates": ["product"],
-	"presets": [
-		{
-			"name": "Main Product",
-			"blocks": [
-                {
-                    "type": "rating"
-                },
-                {
-                    "type": "title"
-                },
-                {
-                    "type": "price"
-                },
-                {
-                    "type": "vendor"
-                },
-				{
-                    "type": "inventory"
-                },
-				{
-                    "type": "product_count_sale"
-                },
-				{
-                    "type": "product_real_time"
-                },
-				{
-                    "type": "countdowns"
-                },
-				{
-                    "type": "shipping_policy"
-                },
-				{
-                    "type": "pick_up"
-                },
-				{
-                    "type": "form_atc"
-                },
-				{
-                    "type": "ask-share"
-                },
-				{
-                    "type": "estimated_delivery"
-                },
-				{
-                    "type": "buy_with"
-                },
-				{
-                    "type": "buy_more"
-                },
-				{
-                    "type": "trust_barget"
-                }
-            ]
-		}
-    ]
 }
 {% endschema %}
 
 <!-- ibr schema code starts -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "@id": "{{ shop.url }}{{ product.url }}#product",
-  "name": "{{ product.title | escape }}",
-  "image": [
-    {% for image in product.images %}
-      "https:{{ image | image_url: width: 800 }}"{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  ],
-  "description": "{{ product.description | strip_html | escape }}"
-  {% if product.selected_or_first_available_variant.sku != blank %},
-  "sku": "{{ product.selected_or_first_available_variant.sku }}"
-  {% endif %},
-  "brand": {
-    "@type": "Brand",
-    "name": "{{ product.vendor | escape }}"
-  },
-  "offers": {
-    "@type": "Offer",
-    "url": "{{ shop.url }}{{ product.url }}",
-    "priceCurrency": "{{ shop.currency }}",
-    "price": "{{ product.selected_or_first_available_variant.price | money_without_currency | replace: ',', '' }}",
-    "availability": "https://schema.org/{% if product.selected_or_first_available_variant.available %}InStock{% else %}OutOfStock{% endif %}",
-    "itemCondition": "https://schema.org/NewCondition",
-    "seller": {
-      "@type": "Organization",
-      "name": "{{ shop.name }}"
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": "{{ shop.url }}{{ product.url }}#product",
+    "name": "{{ product.title | escape }}",
+    "image": [
+      {% for image in product.images %}
+        "https:{{ image | image_url: width: 800 }}"{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ],
+    "description": "{{ product.description | strip_html | escape }}"
+    {% if product.selected_or_first_available_variant.sku != blank %},
+    "sku": "{{ product.selected_or_first_available_variant.sku }}"
+    {% endif %},
+    "brand": {
+      "@type": "Brand",
+      "name": "{{ product.vendor | escape }}"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "{{ shop.url }}{{ product.url }}",
+      "priceCurrency": "{{ shop.currency }}",
+      "price": "{{ product.selected_or_first_available_variant.price | money_without_currency | replace: ',', '' }}",
+      "availability": "https://schema.org/{% if product.selected_or_first_available_variant.available %}InStock{% else %}OutOfStock{% endif %}",
+      "itemCondition": "https://schema.org/NewCondition",
+      "seller": {
+        "@type": "Organization",
+        "name": "{{ shop.name }}"
+      }
     }
+    {% if product.metafields.reviews.rating_count != blank and product.metafields.reviews.rating_count > 0 %},
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "{{ product.metafields.reviews.rating.value }}",
+      "reviewCount": "{{ product.metafields.reviews.rating_count }}"
+    }
+    {% endif %}
   }
-  {% if product.metafields.reviews.rating_count != blank and product.metafields.reviews.rating_count > 0 %},
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "{{ product.metafields.reviews.rating.value }}",
-    "reviewCount": "{{ product.metafields.reviews.rating_count }}"
-  }
-  {% endif %}
-}
 </script>
-
 
 <!-- ibr shema code end -->
 {% comment %}
+  This file has been rewritten to preserve the original behavior.
 
-This file has been rewritten to preserve the original behavior.
-
----
-Changes:
-- from: '{% include ''img-global'' with image: product.featured_image, class: "featured-banner__img",
-    effect: "fade-in" %}'
-  to: '{% include ''img-global'' with image, image: product.featured_image, class:
-    "featured-banner__img", effect: "fade-in" %}'
-  position: 24772..24890
-- from: '{% include ''img-global'' with image: product.featured_image, class: "img-fluid",
-    effect: "fade-in" %}'
-  to: '{% include ''img-global'' with image, image: product.featured_image, class:
-    "img-fluid", effect: "fade-in" %}'
-  position: 37850..37957
+  ---
+  Changes:
+  - from: '{% include ''img-global'' with image: product.featured_image, class: "featured-banner__img",
+      effect: "fade-in" %}'
+    to: '{% include ''img-global'' with image, image: product.featured_image, class:
+      "featured-banner__img", effect: "fade-in" %}'
+    position: 24772..24890
+  - from: '{% include ''img-global'' with image: product.featured_image, class: "img-fluid",
+      effect: "fade-in" %}'
+    to: '{% include ''img-global'' with image, image: product.featured_image, class:
+      "img-fluid", effect: "fade-in" %}'
+    position: 37850..37957
 {% endcomment %}
