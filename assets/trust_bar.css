@@ -1,6 +1,6 @@
 .trust-bar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 20px;
   padding: 20px;
   margin-top: 20px;
@@ -10,7 +10,6 @@
 
 .trust-item {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 12px;
 }
