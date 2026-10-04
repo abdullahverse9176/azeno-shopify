@@ -151,6 +151,16 @@
             "trust_description": "Your payment information is secure."
           }
         },
+        "trust_bar_block": {
+          "type": "trust_bar",
+          "settings": {
+            "background_color": "#BF2B2B",
+            "trust_heading_color": "#F8F4F4",
+            "trust_description_color": "#FFF7F7",
+            "trust_heading": "",
+            "trust_description": "Your payment information is secure."
+          }
+        },
         "20c3a9e0-91de-4ae5-afdb-d78348eb3802": {
           "type": "estimated_delivery",
           "settings": {
