@@ -291,7 +291,8 @@
                             style="margin:{{ block.settings.product_pick_up_margin }}"
                           {% endif %}
                         ></div>
-
+						
+						{%when 'trust_bar' %}
                         {% render 'trust_bar' %}
 
                       {%- when 'ask-share' -%}
