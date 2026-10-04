@@ -36,8 +36,8 @@
         {% endif %}
       </h3>
       <p style="{% if desc_color != blank %}color: {{ desc_color }};{% endif %}">
-        {%- if block.settings.trust_description != blank -%}
-          {{ block.settings.trust_description }}
+        {%- if block.settings.trust_description_2 != blank -%}
+          {{ block.settings.trust_description_2 }}
         {%- else -%}
           100% secure checkout
         {%- endif -%}
@@ -49,8 +49,8 @@
     <div class="trust-icon">✓</div>
     <div class="trust-content">
       <h3 style="{% if heading_color != blank %}color: {{ heading_color }};{% endif %}">
-        {%- if block.settings.trust_heading != blank -%}
-          {{ block.settings.trust_heading }}
+        {%- if block.settings.trust_heading_3 != blank -%}
+          {{ block.settings.trust_heading_3 }}
         {%- else -%}
           Easy Returns
         {% endif %}
