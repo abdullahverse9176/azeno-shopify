@@ -30,7 +30,11 @@
     <div class="trust-icon">✓</div>
     <div class="trust-content">
       <h3 style="{% if heading_color != blank %}color: {{ heading_color }};{% endif %}">
+        {%- if block.settings.trust_heading != blank -%}
+          {{ block.settings.trust_heading }}
+        {%- else -%}
         Secure Payment
+        {% endif %}
       </h3>
       <p style="{% if desc_color != blank %}color: {{ desc_color }};{% endif %}">
         100% secure checkout
