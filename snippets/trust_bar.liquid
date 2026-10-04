@@ -5,7 +5,6 @@
 {%- assign desc_color = block.settings.trust_description_color -%}
 
 <div class="trust-bar" style="{% if bg_color != blank %}background-color: {{ bg_color }};{% endif %}">
-
   <div class="trust-item">
     <div class="trust-icon">✓</div>
     <div class="trust-content">
@@ -33,7 +32,7 @@
         {%- if block.settings.trust_heading != blank -%}
           {{ block.settings.trust_heading }}
         {%- else -%}
-        Secure Payment
+          Secure Payment
         {% endif %}
       </h3>
       <p style="{% if desc_color != blank %}color: {{ desc_color }};{% endif %}">
@@ -42,7 +41,6 @@
         {%- else -%}
           100% secure checkout
         {%- endif -%}
-        
       </p>
     </div>
   </div>
@@ -54,13 +52,16 @@
         {%- if block.settings.trust_heading != blank -%}
           {{ block.settings.trust_heading }}
         {%- else -%}
-        Easy Returns
-        {%endif %}
+          Easy Returns
+        {% endif %}
       </h3>
       <p style="{% if desc_color != blank %}color: {{ desc_color }};{% endif %}">
-        30 day returns
+        {%- if block.settings.trust_description != blank -%}
+          {{ block.settings.trust_description }}
+        {%- else -%}
+          30 day returns
+        {%- endif -%}
       </p>
     </div>
   </div>
-
 </div>
