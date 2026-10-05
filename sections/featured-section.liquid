@@ -27,7 +27,9 @@
             </h3>
 
             <p class="product-card__price">
-              {{ product.price | money }}  | {{product.compare_at_price | money }}
+              {{ product.price | money }} | <span class="compare-price">
+    {{ product.compare_at_price | money }}
+  </span>
             </p>
 
             <button type="button" class="product-card__button">Add to Cart</button>
