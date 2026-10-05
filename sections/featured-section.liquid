@@ -44,22 +44,22 @@
               {% endif %}
             </p>
 
-            <form action="{{ routes.cart_add_url }}" method="post">
-              <input
-                type="hidden"
-                name="id"
-                value="{{ product.selected_or_first_available_variant.id }}"
-              >
+            <form
+  action="{{ routes.cart_add_url }}"
+  method="post"
+  class="product-card__form"
+>
+  <input
+    type="hidden"
+    name="id"
+    value="{{ product.selected_or_first_available_variant.id }}"
+  >
 
-              <input
-                type="hidden"
-                name="quantity"
-                value="1"
-                min="1"
-              >
+  <button type="submit" class="product-card__button">
+    Add to Cart
+  </button>
+</form>
 
-              <button type="submit" class="product-card__button">Add to Cart</button>
-            </form>
           </div>
         </div>
       {% endfor %}
