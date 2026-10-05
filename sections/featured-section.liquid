@@ -30,7 +30,26 @@
               {{ product.price | money }} |  {{ product.compare_at_price | money }}
             </p>
 
-            <button type="button" class="product-card__button">Add to Cart</button>
+            <form action="{{ routes.cart_add_url }}" method="post">
+
+  <input
+    type="hidden"
+    name="id"
+    value="{{ product.selected_or_first_available_variant.id }}"
+  >
+
+  <input
+    type="number"
+    name="quantity"
+    value="1"
+    min="1"
+  >
+
+  <button type="submit">
+    Add to Cart
+  </button>
+
+</form>
           </div>
         </div>
       {% endfor %}
