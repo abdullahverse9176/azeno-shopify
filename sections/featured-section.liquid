@@ -29,7 +29,7 @@
             <p class="featured-products__price">
               {% if product.compare_at_price > product.price %}
 
-                <span class="price">
+                <span class="product-card__price">
                   {{ product.price | money }}
                 </span>
 
@@ -38,7 +38,7 @@
                 </span>
 
               {% else %}
-                <span class="price">
+                <span class="product-card__price">
                   {{ product.price | money }}
                 </span>
               {% endif %}
