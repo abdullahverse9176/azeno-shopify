@@ -26,30 +26,41 @@
               {{ product.title }}
             </h3>
 
-            <p class="product-card__price">
-              {{ product.price | money }} |  {{ product.compare_at_price | money }}
+            <p class="featured-products__price">
+              {% if product.compare_at_price > product.price %}
+                <span class="sale-badge">Sale</span>
+
+                <span class="price">
+                  {{ product.price | money }}
+                </span>
+
+                <span class="compare-price">
+                  {{ product.compare_at_price | money }}
+                </span>
+
+              {% else %}
+                <span class="price">
+                  {{ product.price | money }}
+                </span>
+              {% endif %}
             </p>
 
             <form action="{{ routes.cart_add_url }}" method="post">
+              <input
+                type="hidden"
+                name="id"
+                value="{{ product.selected_or_first_available_variant.id }}"
+              >
 
-  <input
-    type="hidden"
-    name="id"
-    value="{{ product.selected_or_first_available_variant.id }}"
-  >
+              <input
+                type="number"
+                name="quantity"
+                value="1"
+                min="1"
+              >
 
-  <input
-    type="number"
-    name="quantity"
-    value="1"
-    min="1"
-  >
-
-  <button type="submit">
-    Add to Cart
-  </button>
-
-</form>
+              <button type="submit">Add to Cart</button>
+            </form>
           </div>
         </div>
       {% endfor %}
