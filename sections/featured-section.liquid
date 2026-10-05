@@ -28,10 +28,10 @@
 
             <p class="featured-products__price">
               {% if product.compare_at_price > product.price %}
-
                 <span class="product-card__price">
                   {{ product.price | money }}
-                </span> | 
+                </span>
+                |
 
                 <span class="product-card__price">
                   {{ product.compare_at_price | money }}
@@ -45,21 +45,18 @@
             </p>
 
             <form
-  action="{{ routes.cart_add_url }}"
-  method="post"
-  class="product-card__form"
->
-  <input
-    type="hidden"
-    name="id"
-    value="{{ product.selected_or_first_available_variant.id }}"
-  >
+              action="{{ routes.cart_add_url }}"
+              method="post"
+              class="product-card__form"
+            >
+              <input
+                type="hidden"
+                name="id"
+                value="{{ product.selected_or_first_available_variant.id }}"
+              >
 
-  <button type="submit" class="product-card__button">
-    Add to Cart
-  </button>
-</form>
-
+              <button type="submit" class="product-card__button">Add to Cart</button>
+            </form>
           </div>
         </div>
       {% endfor %}
