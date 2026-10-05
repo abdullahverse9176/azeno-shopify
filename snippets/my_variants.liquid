@@ -1,12 +1,8 @@
-
 {{ 'my_variants.css' | asset_url | stylesheet_tag }}
 
 <div class="variant-selector">
-
   {% for option in product.options_with_values %}
-
     <div class="variant-option">
-
       <label for="option-{{ option.position }}">
         {{ option.name }}
       </label>
@@ -15,19 +11,12 @@
         id="option-{{ option.position }}"
         name="options[{{ option.name }}]"
       >
-
         {% for value in option.values %}
-
           <option value="{{ value }}">
             {{ value }}
           </option>
-
         {% endfor %}
-
       </select>
-
     </div>
-
   {% endfor %}
-
 </div>
