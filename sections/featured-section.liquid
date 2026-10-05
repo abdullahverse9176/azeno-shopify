@@ -1,76 +1,58 @@
-
-
 {{ 'featured-section.css' | asset_url | stylesheet_tag }}
 
 <section class="featured-products">
-
   <div class="featured-products__header">
     <h2>Featured Products</h2>
     <p>Discover our latest products</p>
   </div>
 
   <div class="featured-products__grid">
-
     <!-- Product Card -->
     <div class="product-card">
-
       <a href="#" class="product-card__image">
         <img src="product-image.jpg" alt="Product Name">
       </a>
 
       <div class="product-card__content">
+        <h3 class="product-card__title">T-Shirt</h3>
 
-        <h3 class="product-card__title">
-          T-Shirt
-        </h3>
+        <p class="product-card__price">$29.99</p>
 
-        <p class="product-card__price">
-          $29.99
-        </p>
-
-        <button type="button" class="product-card__button">
-          Add to Cart
-        </button>
-
+        <button type="button" class="product-card__button">Add to Cart</button>
       </div>
-
     </div>
 
     <!-- Product Card -->
     <div class="product-card">
-
       <a href="#" class="product-card__image">
         <img src="product-image.jpg" alt="Product Name">
       </a>
 
       <div class="product-card__content">
+        <h3 class="product-card__title">Premium T-Shirt</h3>
 
-        <h3 class="product-card__title">
-          Premium T-Shirt
-        </h3>
+        <p class="product-card__price">$39.99</p>
 
-        <p class="product-card__price">
-          $39.99
-        </p>
-
-        <button type="button" class="product-card__button">
-          Add to Cart
-        </button>
-
+        <button type="button" class="product-card__button">Add to Cart</button>
       </div>
-
     </div>
-
   </div>
-
 </section>
 
-
 {% schema %}
-
 {
-    "name": "Featured Section",
-    "settings":[]
+  "name": "Featured Section",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Section"
+    }
+  ]
 }
-
 {% endschema %}
