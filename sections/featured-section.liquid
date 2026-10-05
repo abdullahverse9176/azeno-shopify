@@ -8,6 +8,8 @@
 
   <div class="featured-products__grid">
     <!-- Product Card -->
+
+    {% for product in collections.product %}
     <div class="product-card">
       <a href="#" class="product-card__image">
         <img src="product-image.jpg" alt="Product Name" width: "400" height: "400">
@@ -20,6 +22,7 @@
 
         <button type="button" class="product-card__button">Add to Cart</button>
       </div>
+    {% endfor %}
     </div>
   </div>
 </section>
