@@ -110,77 +110,76 @@
 {% endschema %}
 
 <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const forms = document.querySelectorAll('.product-card__form');
 
-    document.addEventListener("DOMContentLoaded", () => {
+    forms.forEach((form) => {
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-  const forms = document.querySelectorAll(".product-card__form");
+        const button = form.querySelector('.product-card__button');
+        const formData = new FormData(form);
 
-  forms.forEach((form) => {
+        button.disabled = true;
+        button.textContent = 'Adding...';
 
-    form.addEventListener("submit", async (event) => {
-
-      event.preventDefault();
-
-      const button = form.querySelector(".product-card__button");
-      const formData = new FormData(form);
-
-      // Button disable
-      button.disabled = true;
-      button.textContent = "Adding...";
-
-      try {
-
-        const response = await fetch(
-          form.action + ".js",
-          {
-            method: "POST",
+        try {
+          // Add product to cart
+          const response = await fetch(form.action + '.js', {
+            method: 'POST',
             headers: {
-              "Accept": "application/json"
+              Accept: 'application/json',
             },
-            body: formData
+            body: formData,
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data.description || 'Product add nahi hua');
           }
-        );
 
-        const data = await response.json();
+          console.log('Product added:', data);
 
-        if (!response.ok) {
-          throw new Error(data.description || "Product add nahi hua");
-        }
+          /*
+           * Cart drawer ka latest content lao
+           */
+          const cartResponse = await fetch(window.Shopify.routes.root + 'cart.js');
 
-        console.log("Product added:", data);
+          const cart = await cartResponse.json();
 
-        // Button success state
-        button.textContent = "Added ✓";
+          console.log('Updated cart:', cart);
 
-        // Cart ki latest information
-        const cartResponse = await fetch(
-          window.Shopify.routes.root + "cart.js"
-        );
+          /*
+           * Drawer ko find karo
+           */
+          const drawer = document.querySelector('.js-drawer');
+          const overlay = document.querySelector('.drawer__overlay');
 
-        const cart = await cartResponse.json();
+          if (drawer) {
+            /*
+             * Drawer open
+             */
+            drawer.classList.add('is-open');
 
-        console.log("Updated cart:", cart);
-        console.log("Cart items:", cart.item_count);
-        console.log("Cart total:", cart.total_price);
+            if (overlay) {
+              overlay.classList.add('is-open');
+            }
+          }
 
-        // 2 seconds baad button normal
-        setTimeout(() => {
           button.disabled = false;
-          button.textContent = "Add to Cart";
-        }, 2000);
+          button.textContent = 'Added ✓';
 
-      } catch (error) {
+          setTimeout(() => {
+            button.textContent = 'Add to Cart';
+          }, 1500);
+        } catch (error) {
+          console.error('Add to cart error:', error);
 
-        console.error("Add to cart error:", error);
-
-        button.disabled = false;
-        button.textContent = "Add to Cart";
-      }
-
+          button.disabled = false;
+          button.textContent = 'Add to Cart';
+        }
+      });
     });
-
   });
-
-});
-
 </script>
