@@ -6,25 +6,39 @@
     <p>Discover our latest products</p>
   </div>
 
-  <div class="featured-products__grid">
-    <!-- Product Card -->
+  {% if section.settings.collection != blank %}
+    <div class="featured-products__grid">
+      {% for product in section.settings.collection.products %}
+        <div class="product-card">
+          <a href="{{ product.url }}" class="product-card__image">
+            {% if product.featured_image %}
+              <img
+                src="{{ product.featured_image | image_url: width: 400 }}"
+                alt="{{ product.featured_image.alt | escape }}"
+                width="400"
+                height="400"
+              >
+            {% endif %}
+          </a>
 
-    {% for product in collections.product %}
-    <div class="product-card">
-      <a href="#" class="product-card__image">
-        <img src="{{ product.featured_image }}" alt="{{ product.title }}" width: "400" height: "400">
-      </a>
+          <div class="product-card__content">
+            <h3 class="product-card__title">
+              {{ product.title }}
+            </h3>
 
-      <div class="product-card__content">
-        <h3 class="product-card__title">{{ product.title }}</h3>
+            <p class="product-card__price">
+              {{ product.price | money }}
+            </p>
 
-        <p class="product-card__price">{{ product.price }}</p>
-
-        <button type="button" class="product-card__button">Add to Cart</button>
-      </div>
-    {% endfor %}
+            <button type="button" class="product-card__button">Add to Cart</button>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-  </div>
+
+  {% else %}
+    <p class="featured-products__empty">Please select a collection.</p>
+  {% endif %}
 </section>
 
 {% schema %}
