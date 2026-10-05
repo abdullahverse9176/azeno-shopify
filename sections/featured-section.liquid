@@ -12,7 +12,7 @@
     {% for product in collections.product %}
     <div class="product-card">
       <a href="#" class="product-card__image">
-        <img src="{{ product.featured_image }}" alt="Product Name" width: "400" height: "400">
+        <img src="{{ product.featured_image }}" alt="{{ product.title }}" width: "400" height: "400">
       </a>
 
       <div class="product-card__content">
